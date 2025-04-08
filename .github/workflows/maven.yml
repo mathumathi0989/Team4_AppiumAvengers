@@ -1,4 +1,4 @@
-name: Java CI with Maven
+name: APPIUM ANDROID IOS
 
 on:
   push:
@@ -21,16 +21,27 @@ jobs:
         distribution: 'temurin'
         cache: maven
 
-    - name: Set up Appium
+    - name: Set up Appium and Drivers
       run: |
+        # Install nodejs and npm
         sudo apt update
         sudo apt install -y nodejs
         sudo apt install -y npm
+
+        # Install Appium globally
         sudo npm install -g appium
+
+        # Install required Appium drivers
+        appium driver install uiautomator2
+        appium driver install xcuitest
+
+        # Install necessary Appium plugins
+        appium plugin install --source=npm appium-reporter-plugin
+        appium plugin install --source=npm element-wait
 
     - name: Start Appium server
       run: |
-        nohup appium &
+        nohup appium --use-plugins=appium-reporter-plugin,element-wait &
 
     - name: Build with Maven
       run: mvn -B package --file pom.xml
