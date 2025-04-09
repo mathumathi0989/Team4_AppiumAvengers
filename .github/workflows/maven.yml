@@ -21,6 +21,17 @@ jobs:
         distribution: 'temurin'
         cache: maven
 
+      # ✅ Sets up emulator
+    - name: Start Android Emulator
+      uses: reactivecircus/android-emulator-runner@v2
+      with:
+        api-level: 30
+        target: google_apis
+        arch: x86_64
+        profile: Nexus 6
+        emulator-options: -no-window -no-audio -gpu swiftshader_indirect
+        script: echo "Emulator is ready"
+        
     - name: Set up Appium and Drivers
       run: |
         # Install nodejs and npm
