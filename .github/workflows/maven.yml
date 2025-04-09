@@ -37,11 +37,12 @@ jobs:
 
         # Install necessary Appium plugins
         appium plugin install --source=npm appium-reporter-plugin
-        appium plugin install --source=npm element-wait
+        # appium plugin install --source=npm element-wait
 
     - name: Start Appium server
       run: |
-        nohup appium --use-plugins=appium-reporter-plugin,element-wait &
+        nohup appium --use-plugins=appium-reporter-plugin &
+        # nohup appium --use-plugins=appium-reporter-plugin,element-wait &
 
     - name: Build with Maven
       run: mvn -B package --file pom.xml
