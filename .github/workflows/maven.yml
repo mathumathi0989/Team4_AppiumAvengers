@@ -8,7 +8,6 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -21,7 +20,6 @@ jobs:
         distribution: 'temurin'
         cache: maven
 
-      # ✅ Sets up emulator
     - name: Start Android Emulator
       uses: reactivecircus/android-emulator-runner@v2
       with:
@@ -30,30 +28,33 @@ jobs:
         arch: x86_64
         profile: Nexus 6
         emulator-options: -no-window -no-audio -gpu swiftshader_indirect
+        disable-animations: true
         script: echo "Emulator is ready"
-        
+
+    - name: Wait for emulator to be ready
+      run: |
+        adb wait-for-device
+        boot_completed=""
+        until [[ "$boot_completed" == "1" ]]; do
+          boot_completed=$(adb shell getprop sys.boot_completed | tr -d '\r')
+          echo "Waiting for emulator to boot... (current: $boot_completed)"
+          sleep 5
+        done
+        echo "✅ Emulator fully booted!"
+
     - name: Set up Appium and Drivers
       run: |
-        # Install nodejs and npm
         sudo apt update
-        sudo apt install -y nodejs
-        sudo apt install -y npm
-
-        # Install Appium globally
+        sudo apt install -y nodejs npm
         sudo npm install -g appium
-
-        # Install required Appium drivers
         appium driver install uiautomator2
         appium driver install xcuitest
-
-        # Install necessary Appium plugins
         appium plugin install --source=npm appium-reporter-plugin
         # appium plugin install --source=npm element-wait
 
     - name: Start Appium server
       run: |
         nohup appium --use-plugins=appium-reporter-plugin &
-        # nohup appium --use-plugins=appium-reporter-plugin,element-wait &
 
     - name: Build with Maven
       run: mvn -B package --file pom.xml
