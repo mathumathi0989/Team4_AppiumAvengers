@@ -1,21 +1,27 @@
 package stepDefinitions;
 
 import static org.testng.Assert.assertTrue;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import context.TestContext;
+import io.appium.java_client.AppiumDriver;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import pages.LoginPage;
-import utils.reusableFunctions;
+
 
 public class LoginSteps {
 
-	 private LoginPage loginPage;
 	
+	 
+	    private TestContext testContext;
+
 	    public LoginSteps(TestContext testContext) {
-	        this.loginPage = testContext.getLoginPage();  // Get LoginPage from TestContext
+	        this.testContext = testContext;
 	    }
+	    // Creating a logger
+	    private static Logger logger = LogManager.getLogger();
 
 	    @Given("user is on login page")
 	    public void userIsOnLoginPage() {
@@ -24,23 +30,24 @@ public class LoginSteps {
 
 	    @When("user enters username {string} and password {string}")
 	    public void userEntersUsernameAndPassword(String username, String password) {
-	        loginPage.enterUsername(username);
-	        loginPage.enterPassword(password);
+	    	testContext.getLoginPage().enterUsername(username);
+	    	testContext.getLoginPage().enterPassword(password);
 	    }
 
 	    @When("user clicks the login button")
 	    public void userClicksLoginButton() {
-	        loginPage.clickLoginButton();
+	    	testContext.getLoginPage().clickLoginButton();
 	        
 	    }
 
 	    @Then("login should be {string}")
 	    public void loginShouldBe(String status) {
 	        if (status.equalsIgnoreCase("success")) {
-	        	
-	            assertTrue(loginPage.isProductsPageDisplayed(), "Product page should be visible after successful login");
+	            logger.info("Happy path testing for login");
+	            assertTrue(testContext.getLoginPage().isProductsPageDisplayed(), "Product page should be visible after successful login");
 	        } else {
-	            assertTrue(loginPage.isErrorTextDisplayed(), "Error message should be visible for failed login");
+	        	logger.info("Login negative test cases completed");
+	            assertTrue(testContext.getLoginPage().isErrorTextDisplayed(), "Error message should be visible for failed login");
 	        }
 	    }
     

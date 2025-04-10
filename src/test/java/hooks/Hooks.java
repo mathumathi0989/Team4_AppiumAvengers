@@ -1,5 +1,9 @@
 package hooks;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 
@@ -22,14 +26,14 @@ public class Hooks {
 
     @Before
     public void setup() throws Exception {
-        System.out.println("Launching App...");
+        System.out.println("Launching App");
         baseTest.setup();  // Ensure the driver is initialized
         testContext.getScenarioContext().setContext("AppStarted", true);
     }
 
     @After
     public void teardown(Scenario scenario) {
-        System.out.println("Closing App...");
+        System.out.println("Closing App");
         AppiumDriver driver = baseTest.getDriver();  // Get driver safely
         String sessionId = AppiumReporterUtil.getSessionId(driver);
         String testName = scenario.getName();
@@ -46,23 +50,30 @@ public class Hooks {
             AppiumReporterUtil.setSkippedTestInfo(testName, "SKIPPED", status);
     }
 
-//        if (baseTest.getDriver() != null) {
-//            String sessionId = baseTest.getDriver().getSessionId().toString();
-//            String testName = scenario.getName();
-//            String status = scenario.isFailed() ? "FAILED" : "PASSED";
-//            String error = scenario.isFailed() ? scenario.getStatus().toString() : "";
-//
-//            AppiumReporterUtil.setTestInfo(sessionId, testName, status, error);
-//        }
         baseTest.tearDown();  // Ensure driver is properly closed
     }
 
     @AfterStep
     public void takeScreenshotOnFailure(Scenario scenario) {
-        if (scenario.isFailed() && baseTest.getDriver() != null) {
-            byte[] screenshot = ((TakesScreenshot) baseTest.getDriver()).getScreenshotAs(OutputType.BYTES);
-            scenario.attach(screenshot, "image/png", "Failed Step Screenshot");
-        }
+    	 if (scenario.isFailed() && baseTest.getDriver() != null) {
+    	        TakesScreenshot ts = (TakesScreenshot) baseTest.getDriver();
+    	        byte[] screenshot = ts.getScreenshotAs(OutputType.BYTES);
+    	        scenario.attach(screenshot, "image/png", "Failed Step Screenshot");
+
+    	     // Save screenshot as file
+    	        try {
+    	            File screenshotFile = ts.getScreenshotAs(OutputType.FILE);
+    	            String fileName = "screenshots/" + scenario.getName().replaceAll(" ", "_") + "_" + System.currentTimeMillis() + ".png";
+    	            File destination = new File(fileName);
+    	            destination.getParentFile().mkdirs();  // Create directory if not exists
+
+    	            // Corrected: Use Files.copy instead of File.copy
+    	            Files.copy(screenshotFile.toPath(), destination.toPath());
+    	            System.out.println("Screenshot saved to: " + destination.getAbsolutePath());
+    	        } catch (IOException e) {
+    	            e.printStackTrace();
+    	        }
+    	    }
     }
 
     @AfterAll
