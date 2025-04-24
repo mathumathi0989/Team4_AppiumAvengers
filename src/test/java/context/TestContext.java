@@ -2,43 +2,28 @@ package context;
 
 import base.baseTest;
 import io.appium.java_client.AppiumDriver;
-import pages.LoginPage;
-import pages.productsPage;
+import pages.SubscribePage;
 import utils.ExcelReader;
-
-//TestContext.java (Dependency Injection)
 
 public class TestContext {
 
 	private AppiumDriver driver;
-    protected LoginPage loginPage;
+    protected SubscribePage loginPage;
     private ScenarioContext scenarioContext;
     private ExcelReader excelReader;
-    protected productsPage productsPage;
     
     public TestContext() throws Exception {
-        this.scenarioContext = new ScenarioContext();  // Initialize the ScenarioContext
-//        this.driver = baseTest.getDriver();  // Get the driver from BaseTest
-//        this.loginPage = new LoginPage(driver); 
-        this.excelReader = new ExcelReader();  // Load Excel once
-
-       
+        this.scenarioContext = new ScenarioContext();  
+        this.excelReader = new ExcelReader();  
     }
 
-    public LoginPage getLoginPage() {
+    public SubscribePage getLoginPage() {
         if (this.loginPage == null) {
-            this.loginPage = new LoginPage(getDriver()); // lazy init
+            this.loginPage = new SubscribePage(getDriver()); 
         }
         return this.loginPage;
     }
 
-    public productsPage getProductPage() {
-        if (this.productsPage == null) {
-            this.productsPage = new productsPage(getDriver()); // ✅ init here
-        }
-        return this.productsPage;
-    }
-    
     public AppiumDriver getDriver() {
         if (this.driver == null) {
             this.driver = baseTest.getDriver();
@@ -47,7 +32,7 @@ public class TestContext {
     }
 
     public ScenarioContext getScenarioContext() {
-        return scenarioContext;  // Return the ScenarioContext for storing/sharing data
+        return scenarioContext;  
     }
     
     public ExcelReader getExcelReader() {

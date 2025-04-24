@@ -16,25 +16,28 @@ import io.cucumber.java.AfterStep;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import utils.AppiumReporterUtil;
+import utils.ConfigManager;
 
 public class Hooks {
 	private TestContext testContext;
-
+	private  AppiumDriver driver;
     public Hooks(TestContext context) {
         this.testContext = context;
     }
+    
+
 
     @Before
     public void setup() throws Exception {
         System.out.println("Launching App");
-        baseTest.setup();  // Ensure the driver is initialized
+       baseTest.setup();  
         testContext.getScenarioContext().setContext("AppStarted", true);
     }
 
     @After
     public void teardown(Scenario scenario) {
         System.out.println("Closing App");
-        AppiumDriver driver = baseTest.getDriver();  // Get driver safely
+     //   AppiumDriver driver = baseTest.getDriver();  // Get driver safely
         String sessionId = AppiumReporterUtil.getSessionId(driver);
         String testName = scenario.getName();
         String status = scenario.getStatus().name(); 
@@ -51,6 +54,7 @@ public class Hooks {
     }
 
         baseTest.tearDown();  // Ensure driver is properly closed
+        baseTest.stopServer();
     }
 
     @AfterStep

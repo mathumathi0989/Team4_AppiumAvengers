@@ -3,8 +3,6 @@ package context;
 import java.util.HashMap;
 import java.util.Map;
 
-//ScenarioContext.java (Shared Data Management)
-
 public class ScenarioContext {
 	 private Map<String, Object> scenarioData;
 
