@@ -76,6 +76,9 @@ public class baseTest {
 				UiAutomator2Options options = new UiAutomator2Options()
 						.setAppWaitActivity("*")
 					    .setUdid(ConfigManager.getProperty("device.name"))
+					    .setIgnoreHiddenApiPolicyError(true)
+					    .setAppPackage("free.rm.skytube.oss")
+					    .setAppActivity("free.rm.skytube.gui.activities.MainActivity")
 					    .setApp(ConfigManager.getAppPath());
 				 driver = new AndroidDriver(new URL(ConfigManager.getProperty("appium.server.url")), options);			
 							    }
