@@ -74,9 +74,14 @@ public class baseTest {
 		  if (platform.equalsIgnoreCase("Android")) {
 			  launchAndroidEmulator(ConfigManager.getProperty("avd.name"));
 				UiAutomator2Options options = new UiAutomator2Options()
-						.setAppWaitActivity("*")
-					    .setUdid(ConfigManager.getProperty("device.name"))
-					    .setApp(ConfigManager.getAppPath());
+						.setAppWaitActivity(ConfigManager.getProperty("app.waitactivity"))						
+						 .setUdid(ConfigManager.getProperty("device.name"))
+						 .setIgnoreHiddenApiPolicyError(true)
+						    .setAppPackage(ConfigManager.getProperty("app.package"))
+						    .setAppActivity(ConfigManager.getProperty("app.activity"))
+					    .setApp(ConfigManager.getAppPath())
+				  .setNoReset(true)  // <-- this avoids uninstalling the app
+				  .setFullReset(false);   // <-- avoids full reinstall
 				 driver = new AndroidDriver(new URL(ConfigManager.getProperty("appium.server.url")), options);			
 							    }
 		  else if (platform.equalsIgnoreCase("iOS")) {
@@ -144,6 +149,17 @@ export PATH=$PATH:$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/tools
 	        Thread.sleep(10000); 
 	        System.out.println("Emulator is ready.");      
 	    }
+	  
+	  public static void stopAndroidEmulator() {
+		    try {
+		        String adbPath = ConfigManager.getProperty("android.adb.path");
+		        ProcessBuilder pb = new ProcessBuilder(adbPath, "emu", "kill");
+		        pb.start();
+		        System.out.println("Emulator stopped.");
+		    } catch (IOException e) {
+		        System.out.println("Failed to stop emulator: " + e.getMessage());
+		    }
+		}
 	  
 	    public static void tearDown() {
 	        if (driver != null) {

@@ -10,7 +10,7 @@ public class ExcelReader {
 	private Workbook workbook;
 
 	public String getCellData(String sheetName, int row, int col) throws IOException {
-	    FileInputStream fis = new FileInputStream("src/test/resources/sauceLabsTestData.xlsx");
+	    FileInputStream fis = new FileInputStream(ConfigManager.getProperty("excel.path"));
 	    Workbook workbook = new XSSFWorkbook(fis);
 	    Sheet sheet = workbook.getSheet(sheetName);
 
