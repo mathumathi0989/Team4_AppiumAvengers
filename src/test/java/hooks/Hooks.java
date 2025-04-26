@@ -86,5 +86,8 @@ public class Hooks {
         String report = AppiumReporterUtil.getReport();
         AppiumReporterUtil.deleteReportData();
         AppiumReporterUtil.createReportFile(report, "report");
+        baseTest.stopServer();
+        baseTest.stopAndroidEmulator(); // <-- kill emulator after all tests
+        
     }
 }
