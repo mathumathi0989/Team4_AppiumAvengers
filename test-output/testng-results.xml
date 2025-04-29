@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+<testng-results ignored="0" total="11" passed="11" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-04-25T23:12:29 EDT" name="Default suite" finished-at="2025-04-25T23:12:53 EDT" duration-ms="23402">
+  <suite started-at="2025-04-29T14:04:57 EDT" name="Default suite" finished-at="2025-04-29T14:11:06 EDT" duration-ms="369289">
     <groups>
       <group name="cucumber">
         <method signature="AbstractTestNGCucumberTests.runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:testRunner.TestRunner@6650813a]" name="runScenario" class="io.cucumber.testng.AbstractTestNGCucumberTests"/>
       </group> <!-- cucumber -->
     </groups>
-    <test started-at="2025-04-25T23:12:29 EDT" name="Default test" finished-at="2025-04-25T23:12:53 EDT" duration-ms="23402">
+    <test started-at="2025-04-29T14:04:57 EDT" name="Default test" finished-at="2025-04-29T14:11:06 EDT" duration-ms="369289">
       <class name="testRunner.TestRunner">
-        <test-method is-config="true" signature="setUpClass(org.testng.ITestContext)[pri:0, instance:testRunner.TestRunner@6650813a]" started-at="2025-04-25T23:12:29 EDT" name="setUpClass" finished-at="2025-04-25T23:12:29 EDT" duration-ms="275" status="PASS">
+        <test-method is-config="true" signature="setUpClass(org.testng.ITestContext)[pri:0, instance:testRunner.TestRunner@6650813a]" started-at="2025-04-29T14:04:57 EDT" name="setUpClass" finished-at="2025-04-29T14:04:58 EDT" duration-ms="608" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[org.testng.TestRunner@38ac8968]]>
+                <![CDATA[org.testng.TestRunner@16ccd2bc]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUpClass -->
-        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:testRunner.TestRunner@6650813a]" started-at="2025-04-25T23:12:29 EDT" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2025-04-25T23:12:52 EDT" duration-ms="22763" status="PASS">
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:testRunner.TestRunner@6650813a]" started-at="2025-04-29T14:04:58 EDT" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2025-04-29T14:05:34 EDT" duration-ms="36019" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -37,7 +37,167 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- runScenario -->
-        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:testRunner.TestRunner@6650813a]" started-at="2025-04-25T23:12:52 EDT" name="tearDownClass" finished-at="2025-04-25T23:12:53 EDT" duration-ms="317" status="PASS">
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:testRunner.TestRunner@6650813a]" started-at="2025-04-29T14:05:34 EDT" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2025-04-29T14:06:05 EDT" duration-ms="30932" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["Verify the presence of subscribe button"]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA["Subscribe functionality"]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runScenario -->
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:testRunner.TestRunner@6650813a]" started-at="2025-04-29T14:06:05 EDT" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2025-04-29T14:06:36 EDT" duration-ms="31587" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["Validate if user able to subscribe the channel"]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA["Subscribe functionality"]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runScenario -->
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:testRunner.TestRunner@6650813a]" started-at="2025-04-29T14:06:36 EDT" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2025-04-29T14:07:13 EDT" duration-ms="36884" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["Validate if user able to subscribe the video"]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA["Subscribe functionality"]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runScenario -->
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:testRunner.TestRunner@6650813a]" started-at="2025-04-29T14:07:13 EDT" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2025-04-29T14:07:43 EDT" duration-ms="30021" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["Verify the presence of Unsubscribe option"]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA["UnSubscribe functionality"]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runScenario -->
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:testRunner.TestRunner@6650813a]" started-at="2025-04-29T14:07:43 EDT" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2025-04-29T14:08:11 EDT" duration-ms="27863" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["Verify the presence of Unsubscribe button"]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA["UnSubscribe functionality"]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runScenario -->
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:testRunner.TestRunner@6650813a]" started-at="2025-04-29T14:08:11 EDT" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2025-04-29T14:08:38 EDT" duration-ms="26470" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["Validate if user able to Unsubscribe the channel"]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA["UnSubscribe functionality"]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runScenario -->
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:testRunner.TestRunner@6650813a]" started-at="2025-04-29T14:08:38 EDT" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2025-04-29T14:09:14 EDT" duration-ms="36823" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["Validate if user able to Unsubscribe the video"]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA["UnSubscribe functionality"]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runScenario -->
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:testRunner.TestRunner@6650813a]" started-at="2025-04-29T14:09:14 EDT" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2025-04-29T14:09:53 EDT" duration-ms="38610" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["Verify the presence of Watched Video Cleaner option"]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA["Watched Video Cleaner functionality"]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runScenario -->
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:testRunner.TestRunner@6650813a]" started-at="2025-04-29T14:09:53 EDT" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2025-04-29T14:10:30 EDT" duration-ms="36813" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["Verify watched video cleaner functionality for watched bookmarks"]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA["Watched Video Cleaner functionality"]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runScenario -->
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:testRunner.TestRunner@6650813a]" started-at="2025-04-29T14:10:30 EDT" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2025-04-29T14:11:06 EDT" duration-ms="36398" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["Verify watched video cleaner functionality for watched downloads"]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA["Watched Video Cleaner functionality"]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runScenario -->
+        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:testRunner.TestRunner@6650813a]" started-at="2025-04-29T14:11:06 EDT" name="tearDownClass" finished-at="2025-04-29T14:11:06 EDT" duration-ms="69" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDownClass -->

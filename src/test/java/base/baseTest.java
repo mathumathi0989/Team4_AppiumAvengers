@@ -74,14 +74,14 @@ public class baseTest {
 		  if (platform.equalsIgnoreCase("Android")) {
 			  launchAndroidEmulator(ConfigManager.getProperty("avd.name"));
 				UiAutomator2Options options = new UiAutomator2Options()
-						.setAppWaitActivity(ConfigManager.getProperty("app.waitactivity"))						
+						.setAppWaitActivity("*")						
 						 .setUdid(ConfigManager.getProperty("device.name"))
 						 .setIgnoreHiddenApiPolicyError(true)
 						    .setAppPackage(ConfigManager.getProperty("app.package"))
 						    .setAppActivity(ConfigManager.getProperty("app.activity"))
 					    .setApp(ConfigManager.getAppPath())
-				  .setNoReset(true)  // <-- this avoids uninstalling the app
-				  .setFullReset(false);   // <-- avoids full reinstall
+				  .setNoReset(false)  // <-- this avoids uninstalling the app
+				  .setFullReset(true);   // <-- avoids full reinstall
 				 driver = new AndroidDriver(new URL(ConfigManager.getProperty("appium.server.url")), options);			
 							    }
 		  else if (platform.equalsIgnoreCase("iOS")) {
@@ -89,41 +89,45 @@ public class baseTest {
 					  .setUdid(ConfigManager.getProperty("udid"))
 					  .setApp(ConfigManager.getProperty("app.ios.path"))
 					  .setNoReset(false)
+					  .setAutoAcceptAlerts(true)
 					  .setShowXcodeLog(true); 
 			  driver = new IOSDriver(new URL(ConfigManager.getProperty("appium.server.url")), options);
+			  driver.executeScript("plugin: setReporterPluginProperties", ImmutableMap.of(
+		                "enabled", true,
+		                "projectName", "Numpy Ninja Project",
+		                "reportTitle", "Appium Test Execution Report",
+		                "teamName", "Appium Avengers Team"
+		        ));
+			  
 			 	  }
-		  if (!AppiumReporterUtil.isDeviceFarm(driver)) {
-	        driver.executeScript("plugin: setWaitPluginProperties", ImmutableMap.of(
-	                "timeout", 10000,
-	                "intervalBetweenAttempts", 500
-	        ));
-		  }
-	        driver.executeScript("plugin: setReporterPluginProperties", ImmutableMap.of(
-	                "enabled", true,
-	                "projectName", "Numpy Ninja Project",
-	                "reportTitle", "Appium Test Execution Report"
-	        ));
+//		  if (!AppiumReporterUtil.isDeviceFarm(driver)) {
+//	        driver.executeScript("plugin: setWaitPluginProperties", ImmutableMap.of(
+//	                "timeout", 10000,
+//	                "intervalBetweenAttempts", 500
+//	        ));
+//		  }
+	       
 		  
 	    }
 
-	  private static void startAppiumServer() {
-		    /*
-		     #Set Appium PATH in Env variable
-		export APPIUM_JS_PATH=/Users/{{UserName}}/.npm-global/lib/node_modules/appium/build/lib/main.js 
-		     */
-		  System.out.println("check if its comes inside appium");
-	        String appiumJsPath = System.getenv("APPIUM_JS_PATH");  
-	        if (appiumJsPath == null || appiumJsPath.isEmpty()) {
-	            throw new IllegalStateException("Appium JS Path is not set in environment variables.");
-	        }
-	        System.out.println("Appium JS Path is: " + appiumJsPath);
-	        service = new AppiumServiceBuilder()
-	                .withAppiumJS(new File(appiumJsPath))
-	                .usingAnyFreePort()
-	                .build();
-	        service.start();
-	        System.out.println("Appium server started at " + service.getUrl());
-	    }
+//	  private static void startAppiumServer() {
+//		    /*
+//		     #Set Appium PATH in Env variable
+//		export APPIUM_JS_PATH=/Users/{{UserName}}/.npm-global/lib/node_modules/appium/build/lib/main.js 
+//		     */
+//		  System.out.println("check if its comes inside appium");
+//	        String appiumJsPath = System.getenv("APPIUM_JS_PATH");  
+//	        if (appiumJsPath == null || appiumJsPath.isEmpty()) {
+//	            throw new IllegalStateException("Appium JS Path is not set in environment variables.");
+//	        }
+//	        System.out.println("Appium JS Path is: " + appiumJsPath);
+//	        service = new AppiumServiceBuilder()
+//	                .withAppiumJS(new File(appiumJsPath))
+//	                .usingAnyFreePort()
+//	                .build();
+//	        service.start();
+//	        System.out.println("Appium server started at " + service.getUrl());
+//	    }
 	  
 	  private static void launchAndroidEmulator(String avdName) throws IOException, InterruptedException {
 		  /*
@@ -170,6 +174,39 @@ export PATH=$PATH:$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/tools
 
 	    public static AppiumDriver getDriver() {
 	        return driver;
+	    }
+	    
+	    public static void clearAppData() throws IOException {
+	    	  String adbPath = ConfigManager.getProperty("android.adb.path");
+	    	    String appPackage = ConfigManager.getProperty("app.package");
+
+	    	    // Clear app data
+	    	    ProcessBuilder adbClearData = new ProcessBuilder(adbPath, "shell", "pm", "clear", appPackage);
+	    	    adbClearData.start();
+	    	    System.out.println("App data cleared for package: " + appPackage);
+
+	    	    // Optionally, terminate the app if it is still running
+	    	    ProcessBuilder adbTerminate = new ProcessBuilder(adbPath, "shell", "am", "force-stop", appPackage);
+	    	    adbTerminate.start();
+	    	    System.out.println("App terminated for package: " + appPackage);
+	    }
+	    public static void terminateAndResetApp() throws IOException {
+	        String platform = ConfigManager.getProperty("platform").toLowerCase();
+
+	        if (platform.equals("android")) {
+	            String appPackage = ConfigManager.getProperty("app.package");
+	            String adbPath = ConfigManager.getProperty("android.adb.path");
+
+	            // Terminate the app
+	            ProcessBuilder adbTerminate = new ProcessBuilder(adbPath, "shell", "am", "force-stop", appPackage);
+	            adbTerminate.start();
+	            System.out.println("Android app terminated");
+
+	            // Reset the app
+	            clearAppData();  // Clears the app data to ensure a clean state
+
+	            System.out.println("Android app data cleared and reset.");
+	        } 
 	    }
 	    
 }

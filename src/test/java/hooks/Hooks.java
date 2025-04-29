@@ -29,6 +29,12 @@ public class Hooks {
 
     @Before
     public void setup() throws Exception {
+    	 System.out.println("Clearing App Data");
+    	 baseTest.clearAppData();  // Clear app data to reset the app's state
+    	 
+    	 System.out.println("Terminating and Resetting App");
+    	    baseTest.terminateAndResetApp(); // Ensure the app is fully reset and terminated
+
         System.out.println("Launching App");
        baseTest.setup();  
         testContext.getScenarioContext().setContext("AppStarted", true);
@@ -38,6 +44,11 @@ public class Hooks {
     public void teardown(Scenario scenario) {
         System.out.println("Closing App");
      //   AppiumDriver driver = baseTest.getDriver();  // Get driver safely
+        try {
+            baseTest.terminateAndResetApp();  // Ensure app is reset and closed after each scenario
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         String sessionId = AppiumReporterUtil.getSessionId(driver);
         String testName = scenario.getName();
         String status = scenario.getStatus().name(); 
@@ -85,7 +96,7 @@ public class Hooks {
         System.out.println("Generating HTML report...");
         String report = AppiumReporterUtil.getReport();
         AppiumReporterUtil.deleteReportData();
-        AppiumReporterUtil.createReportFile(report, "report");
+        AppiumReporterUtil.createReportFile(report, "AppiumAvengersReport");
         baseTest.stopServer();
         baseTest.stopAndroidEmulator(); // <-- kill emulator after all tests
         
