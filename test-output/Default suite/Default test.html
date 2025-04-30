@@ -55,11 +55,17 @@ function toggleAllBoxes() {
 <body>
 <h2 align='center'>Default test</h2><table border='1' align="center">
 <tr>
-<td>Tests passed/Failed/Skipped:</td><td>1/0/0</td>
+<td>Tests passed/Failed/Skipped:</td><td>0/11/0</td>
 </tr><tr>
+<<<<<<< HEAD
 <td>Started on:</td><td>Fri Apr 25 08:49:16 CDT 2025</td>
 </tr>
 <tr><td>Total time:</td><td>122 seconds (122950 ms)</td>
+=======
+<td>Started on:</td><td>Tue Apr 29 22:36:07 EDT 2025</td>
+</tr>
+<tr><td>Total time:</td><td>272 seconds (272227 ms)</td>
+>>>>>>> 22e7530fa20d069445f7a5116911e2d76ec357a2
 </tr><tr>
 <td>Included groups:</td><td></td>
 </tr><tr>
@@ -67,8 +73,8 @@ function toggleAllBoxes() {
 </tr>
 </table><p/>
 <small><i>(Hover the method name to see the test class name)</i></small><p/>
-<table width='100%' border='1' class='invocation-passed'>
-<tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
+<table width='100%' border='1' class='invocation-failed'>
+<tr><td colspan='4' align='center'><b>FAILED TESTS</b></td></tr>
 <tr><td><b>Test method</b></td>
 <td width="30%"><b>Exception</b></td>
 <td width="10%"><b>Time (seconds)</b></td>
@@ -76,9 +82,340 @@ function toggleAllBoxes() {
 </tr>
 <tr>
 <td title='testRunner.TestRunner.runScenario()'><b>runScenario</b><br>Test class: testRunner.TestRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Verify the presence of subscribe option", "Subscribe functionality"</td>
+<<<<<<< HEAD
 <td></td>
 <td>121</td>
 <td>testRunner.TestRunner@54e81b21</td></tr>
+=======
+<td><div><pre>org.openqa.selenium.NoSuchElementException: Unable to find element with locator By.xpath: //android.widget.TextView[@text=&quot;SkyTube&quot;]
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Build info: version: &apos;4.31.0&apos;, revision: &apos;1ef9f18787*&apos;
+System info: os.name: &apos;Mac OS X&apos;, os.arch: &apos;x86_64&apos;, os.version: &apos;15.3.1&apos;, java.version: &apos;17.0.9&apos;
+Driver info: driver.version: RemoteWebDriver
+	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:168)
+	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:368)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:362)
+	at pages.TrendingPage.getSkyTubePageTitle(TrendingPage.java:34)
+	at stepDefinitions.SubscribeSteps.user_is_on_trending_tab(SubscribeSteps.java:30)
+	at ✽.User is on Trending tab(file:///Users/mathumathibalakrishnan/eclipse/Mathumathi_2025/Team4_AppiumAvengers/src/test/resources/features/subscribe.feature:5)
+</pre></div><a href='#' onClick='toggleBox("stack-trace1669104653", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1669104653'><pre>org.openqa.selenium.NoSuchElementException: Unable to find element with locator By.xpath: //android.widget.TextView[@text=&quot;SkyTube&quot;]
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Build info: version: &apos;4.31.0&apos;, revision: &apos;1ef9f18787*&apos;
+System info: os.name: &apos;Mac OS X&apos;, os.arch: &apos;x86_64&apos;, os.version: &apos;15.3.1&apos;, java.version: &apos;17.0.9&apos;
+Driver info: driver.version: RemoteWebDriver
+	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:168)
+	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:368)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:362)
+	at pages.TrendingPage.getSkyTubePageTitle(TrendingPage.java:34)
+	at stepDefinitions.SubscribeSteps.user_is_on_trending_tab(SubscribeSteps.java:30)
+	at ✽.User is on Trending tab(file:///Users/mathumathibalakrishnan/eclipse/Mathumathi_2025/Team4_AppiumAvengers/src/test/resources/features/subscribe.feature:5)
+</pre></div></td>
+<td>67</td>
+<td>testRunner.TestRunner@6650813a</td></tr>
+<tr>
+<td title='testRunner.TestRunner.runScenario()'><b>runScenario</b><br>Test class: testRunner.TestRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Verify the presence of Watched Video Cleaner option", "Watched Video Cleaner functionality"</td>
+<td><div><pre>org.openqa.selenium.NoSuchElementException: Unable to find element with locator By.xpath: //android.widget.TextView[@text=&quot;SkyTube&quot;]
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Build info: version: &apos;4.31.0&apos;, revision: &apos;1ef9f18787*&apos;
+System info: os.name: &apos;Mac OS X&apos;, os.arch: &apos;x86_64&apos;, os.version: &apos;15.3.1&apos;, java.version: &apos;17.0.9&apos;
+Driver info: driver.version: RemoteWebDriver
+	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:168)
+	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:368)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:362)
+	at pages.TrendingPage.getSkyTubePageTitle(TrendingPage.java:34)
+	at stepDefinitions.SubscribeSteps.user_is_on_trending_tab(SubscribeSteps.java:30)
+	at ✽.User is on Trending tab(file:///Users/mathumathibalakrishnan/eclipse/Mathumathi_2025/Team4_AppiumAvengers/src/test/resources/features/watchedVideoCleaner.feature:5)
+</pre></div><a href='#' onClick='toggleBox("stack-trace1257319011", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1257319011'><pre>org.openqa.selenium.NoSuchElementException: Unable to find element with locator By.xpath: //android.widget.TextView[@text=&quot;SkyTube&quot;]
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Build info: version: &apos;4.31.0&apos;, revision: &apos;1ef9f18787*&apos;
+System info: os.name: &apos;Mac OS X&apos;, os.arch: &apos;x86_64&apos;, os.version: &apos;15.3.1&apos;, java.version: &apos;17.0.9&apos;
+Driver info: driver.version: RemoteWebDriver
+	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:168)
+	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:368)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:362)
+	at pages.TrendingPage.getSkyTubePageTitle(TrendingPage.java:34)
+	at stepDefinitions.SubscribeSteps.user_is_on_trending_tab(SubscribeSteps.java:30)
+	at ✽.User is on Trending tab(file:///Users/mathumathibalakrishnan/eclipse/Mathumathi_2025/Team4_AppiumAvengers/src/test/resources/features/watchedVideoCleaner.feature:5)
+</pre></div></td>
+<td>16</td>
+<td>testRunner.TestRunner@6650813a</td></tr>
+<tr>
+<td title='testRunner.TestRunner.runScenario()'><b>runScenario</b><br>Test class: testRunner.TestRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Verify the presence of subscribe button", "Subscribe functionality"</td>
+<td><div><pre>org.openqa.selenium.NoSuchElementException: Unable to find element with locator By.xpath: //android.widget.TextView[@text=&quot;SkyTube&quot;]
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Build info: version: &apos;4.31.0&apos;, revision: &apos;1ef9f18787*&apos;
+System info: os.name: &apos;Mac OS X&apos;, os.arch: &apos;x86_64&apos;, os.version: &apos;15.3.1&apos;, java.version: &apos;17.0.9&apos;
+Driver info: driver.version: RemoteWebDriver
+	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:168)
+	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:368)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:362)
+	at pages.TrendingPage.getSkyTubePageTitle(TrendingPage.java:34)
+	at stepDefinitions.SubscribeSteps.user_is_on_trending_tab(SubscribeSteps.java:30)
+	at ✽.User is on Trending tab(file:///Users/mathumathibalakrishnan/eclipse/Mathumathi_2025/Team4_AppiumAvengers/src/test/resources/features/subscribe.feature:5)
+</pre></div><a href='#' onClick='toggleBox("stack-trace568717494", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace568717494'><pre>org.openqa.selenium.NoSuchElementException: Unable to find element with locator By.xpath: //android.widget.TextView[@text=&quot;SkyTube&quot;]
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Build info: version: &apos;4.31.0&apos;, revision: &apos;1ef9f18787*&apos;
+System info: os.name: &apos;Mac OS X&apos;, os.arch: &apos;x86_64&apos;, os.version: &apos;15.3.1&apos;, java.version: &apos;17.0.9&apos;
+Driver info: driver.version: RemoteWebDriver
+	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:168)
+	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:368)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:362)
+	at pages.TrendingPage.getSkyTubePageTitle(TrendingPage.java:34)
+	at stepDefinitions.SubscribeSteps.user_is_on_trending_tab(SubscribeSteps.java:30)
+	at ✽.User is on Trending tab(file:///Users/mathumathibalakrishnan/eclipse/Mathumathi_2025/Team4_AppiumAvengers/src/test/resources/features/subscribe.feature:5)
+</pre></div></td>
+<td>30</td>
+<td>testRunner.TestRunner@6650813a</td></tr>
+<tr>
+<td title='testRunner.TestRunner.runScenario()'><b>runScenario</b><br>Test class: testRunner.TestRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Verify the presence of Unsubscribe button", "UnSubscribe functionality"</td>
+<td><div><pre>org.openqa.selenium.NoSuchElementException: Unable to find element with locator By.xpath: //android.widget.TextView[@text=&quot;SkyTube&quot;]
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Build info: version: &apos;4.31.0&apos;, revision: &apos;1ef9f18787*&apos;
+System info: os.name: &apos;Mac OS X&apos;, os.arch: &apos;x86_64&apos;, os.version: &apos;15.3.1&apos;, java.version: &apos;17.0.9&apos;
+Driver info: driver.version: RemoteWebDriver
+	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:168)
+	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:368)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:362)
+	at pages.TrendingPage.getSkyTubePageTitle(TrendingPage.java:34)
+	at stepDefinitions.SubscribeSteps.user_is_on_trending_tab(SubscribeSteps.java:30)
+	at ✽.User is on Trending tab(file:///Users/mathumathibalakrishnan/eclipse/Mathumathi_2025/Team4_AppiumAvengers/src/test/resources/features/unSubscribe.feature:5)
+</pre></div><a href='#' onClick='toggleBox("stack-trace992054388", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace992054388'><pre>org.openqa.selenium.NoSuchElementException: Unable to find element with locator By.xpath: //android.widget.TextView[@text=&quot;SkyTube&quot;]
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Build info: version: &apos;4.31.0&apos;, revision: &apos;1ef9f18787*&apos;
+System info: os.name: &apos;Mac OS X&apos;, os.arch: &apos;x86_64&apos;, os.version: &apos;15.3.1&apos;, java.version: &apos;17.0.9&apos;
+Driver info: driver.version: RemoteWebDriver
+	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:168)
+	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:368)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:362)
+	at pages.TrendingPage.getSkyTubePageTitle(TrendingPage.java:34)
+	at stepDefinitions.SubscribeSteps.user_is_on_trending_tab(SubscribeSteps.java:30)
+	at ✽.User is on Trending tab(file:///Users/mathumathibalakrishnan/eclipse/Mathumathi_2025/Team4_AppiumAvengers/src/test/resources/features/unSubscribe.feature:5)
+</pre></div></td>
+<td>18</td>
+<td>testRunner.TestRunner@6650813a</td></tr>
+<tr>
+<td title='testRunner.TestRunner.runScenario()'><b>runScenario</b><br>Test class: testRunner.TestRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Verify watched video cleaner functionality for watched downloads", "Watched Video Cleaner functionality"</td>
+<td><div><pre>org.openqa.selenium.NoSuchElementException: Unable to find element with locator By.xpath: //android.widget.TextView[@text=&quot;SkyTube&quot;]
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Build info: version: &apos;4.31.0&apos;, revision: &apos;1ef9f18787*&apos;
+System info: os.name: &apos;Mac OS X&apos;, os.arch: &apos;x86_64&apos;, os.version: &apos;15.3.1&apos;, java.version: &apos;17.0.9&apos;
+Driver info: driver.version: RemoteWebDriver
+	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:168)
+	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:368)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:362)
+	at pages.TrendingPage.getSkyTubePageTitle(TrendingPage.java:34)
+	at stepDefinitions.SubscribeSteps.user_is_on_trending_tab(SubscribeSteps.java:30)
+	at ✽.User is on Trending tab(file:///Users/mathumathibalakrishnan/eclipse/Mathumathi_2025/Team4_AppiumAvengers/src/test/resources/features/watchedVideoCleaner.feature:5)
+</pre></div><a href='#' onClick='toggleBox("stack-trace1874962678", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1874962678'><pre>org.openqa.selenium.NoSuchElementException: Unable to find element with locator By.xpath: //android.widget.TextView[@text=&quot;SkyTube&quot;]
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Build info: version: &apos;4.31.0&apos;, revision: &apos;1ef9f18787*&apos;
+System info: os.name: &apos;Mac OS X&apos;, os.arch: &apos;x86_64&apos;, os.version: &apos;15.3.1&apos;, java.version: &apos;17.0.9&apos;
+Driver info: driver.version: RemoteWebDriver
+	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:168)
+	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:368)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:362)
+	at pages.TrendingPage.getSkyTubePageTitle(TrendingPage.java:34)
+	at stepDefinitions.SubscribeSteps.user_is_on_trending_tab(SubscribeSteps.java:30)
+	at ✽.User is on Trending tab(file:///Users/mathumathibalakrishnan/eclipse/Mathumathi_2025/Team4_AppiumAvengers/src/test/resources/features/watchedVideoCleaner.feature:5)
+</pre></div></td>
+<td>15</td>
+<td>testRunner.TestRunner@6650813a</td></tr>
+<tr>
+<td title='testRunner.TestRunner.runScenario()'><b>runScenario</b><br>Test class: testRunner.TestRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Validate if user able to Unsubscribe the channel", "UnSubscribe functionality"</td>
+<td><div><pre>org.openqa.selenium.NoSuchElementException: Unable to find element with locator By.xpath: //android.widget.TextView[@text=&quot;SkyTube&quot;]
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Build info: version: &apos;4.31.0&apos;, revision: &apos;1ef9f18787*&apos;
+System info: os.name: &apos;Mac OS X&apos;, os.arch: &apos;x86_64&apos;, os.version: &apos;15.3.1&apos;, java.version: &apos;17.0.9&apos;
+Driver info: driver.version: RemoteWebDriver
+	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:168)
+	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:368)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:362)
+	at pages.TrendingPage.getSkyTubePageTitle(TrendingPage.java:34)
+	at stepDefinitions.SubscribeSteps.user_is_on_trending_tab(SubscribeSteps.java:30)
+	at ✽.User is on Trending tab(file:///Users/mathumathibalakrishnan/eclipse/Mathumathi_2025/Team4_AppiumAvengers/src/test/resources/features/unSubscribe.feature:5)
+</pre></div><a href='#' onClick='toggleBox("stack-trace666639684", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace666639684'><pre>org.openqa.selenium.NoSuchElementException: Unable to find element with locator By.xpath: //android.widget.TextView[@text=&quot;SkyTube&quot;]
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Build info: version: &apos;4.31.0&apos;, revision: &apos;1ef9f18787*&apos;
+System info: os.name: &apos;Mac OS X&apos;, os.arch: &apos;x86_64&apos;, os.version: &apos;15.3.1&apos;, java.version: &apos;17.0.9&apos;
+Driver info: driver.version: RemoteWebDriver
+	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:168)
+	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:368)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:362)
+	at pages.TrendingPage.getSkyTubePageTitle(TrendingPage.java:34)
+	at stepDefinitions.SubscribeSteps.user_is_on_trending_tab(SubscribeSteps.java:30)
+	at ✽.User is on Trending tab(file:///Users/mathumathibalakrishnan/eclipse/Mathumathi_2025/Team4_AppiumAvengers/src/test/resources/features/unSubscribe.feature:5)
+</pre></div></td>
+<td>16</td>
+<td>testRunner.TestRunner@6650813a</td></tr>
+<tr>
+<td title='testRunner.TestRunner.runScenario()'><b>runScenario</b><br>Test class: testRunner.TestRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Verify the presence of Unsubscribe option", "UnSubscribe functionality"</td>
+<td><div><pre>org.openqa.selenium.NoSuchElementException: Unable to find element with locator By.xpath: //android.widget.TextView[@text=&quot;SkyTube&quot;]
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Build info: version: &apos;4.31.0&apos;, revision: &apos;1ef9f18787*&apos;
+System info: os.name: &apos;Mac OS X&apos;, os.arch: &apos;x86_64&apos;, os.version: &apos;15.3.1&apos;, java.version: &apos;17.0.9&apos;
+Driver info: driver.version: RemoteWebDriver
+	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:168)
+	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:368)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:362)
+	at pages.TrendingPage.getSkyTubePageTitle(TrendingPage.java:34)
+	at stepDefinitions.SubscribeSteps.user_is_on_trending_tab(SubscribeSteps.java:30)
+	at ✽.User is on Trending tab(file:///Users/mathumathibalakrishnan/eclipse/Mathumathi_2025/Team4_AppiumAvengers/src/test/resources/features/unSubscribe.feature:5)
+</pre></div><a href='#' onClick='toggleBox("stack-trace619002012", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace619002012'><pre>org.openqa.selenium.NoSuchElementException: Unable to find element with locator By.xpath: //android.widget.TextView[@text=&quot;SkyTube&quot;]
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Build info: version: &apos;4.31.0&apos;, revision: &apos;1ef9f18787*&apos;
+System info: os.name: &apos;Mac OS X&apos;, os.arch: &apos;x86_64&apos;, os.version: &apos;15.3.1&apos;, java.version: &apos;17.0.9&apos;
+Driver info: driver.version: RemoteWebDriver
+	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:168)
+	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:368)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:362)
+	at pages.TrendingPage.getSkyTubePageTitle(TrendingPage.java:34)
+	at stepDefinitions.SubscribeSteps.user_is_on_trending_tab(SubscribeSteps.java:30)
+	at ✽.User is on Trending tab(file:///Users/mathumathibalakrishnan/eclipse/Mathumathi_2025/Team4_AppiumAvengers/src/test/resources/features/unSubscribe.feature:5)
+</pre></div></td>
+<td>22</td>
+<td>testRunner.TestRunner@6650813a</td></tr>
+<tr>
+<td title='testRunner.TestRunner.runScenario()'><b>runScenario</b><br>Test class: testRunner.TestRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Verify watched video cleaner functionality for watched bookmarks", "Watched Video Cleaner functionality"</td>
+<td><div><pre>org.openqa.selenium.NoSuchElementException: Unable to find element with locator By.xpath: //android.widget.TextView[@text=&quot;SkyTube&quot;]
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Build info: version: &apos;4.31.0&apos;, revision: &apos;1ef9f18787*&apos;
+System info: os.name: &apos;Mac OS X&apos;, os.arch: &apos;x86_64&apos;, os.version: &apos;15.3.1&apos;, java.version: &apos;17.0.9&apos;
+Driver info: driver.version: RemoteWebDriver
+	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:168)
+	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:368)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:362)
+	at pages.TrendingPage.getSkyTubePageTitle(TrendingPage.java:34)
+	at stepDefinitions.SubscribeSteps.user_is_on_trending_tab(SubscribeSteps.java:30)
+	at ✽.User is on Trending tab(file:///Users/mathumathibalakrishnan/eclipse/Mathumathi_2025/Team4_AppiumAvengers/src/test/resources/features/watchedVideoCleaner.feature:5)
+</pre></div><a href='#' onClick='toggleBox("stack-trace1910687448", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1910687448'><pre>org.openqa.selenium.NoSuchElementException: Unable to find element with locator By.xpath: //android.widget.TextView[@text=&quot;SkyTube&quot;]
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Build info: version: &apos;4.31.0&apos;, revision: &apos;1ef9f18787*&apos;
+System info: os.name: &apos;Mac OS X&apos;, os.arch: &apos;x86_64&apos;, os.version: &apos;15.3.1&apos;, java.version: &apos;17.0.9&apos;
+Driver info: driver.version: RemoteWebDriver
+	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:168)
+	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:368)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:362)
+	at pages.TrendingPage.getSkyTubePageTitle(TrendingPage.java:34)
+	at stepDefinitions.SubscribeSteps.user_is_on_trending_tab(SubscribeSteps.java:30)
+	at ✽.User is on Trending tab(file:///Users/mathumathibalakrishnan/eclipse/Mathumathi_2025/Team4_AppiumAvengers/src/test/resources/features/watchedVideoCleaner.feature:5)
+</pre></div></td>
+<td>16</td>
+<td>testRunner.TestRunner@6650813a</td></tr>
+<tr>
+<td title='testRunner.TestRunner.runScenario()'><b>runScenario</b><br>Test class: testRunner.TestRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Validate if user able to subscribe the channel", "Subscribe functionality"</td>
+<td><div><pre>org.openqa.selenium.NoSuchElementException: Unable to find element with locator By.xpath: //android.widget.TextView[@text=&quot;SkyTube&quot;]
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Build info: version: &apos;4.31.0&apos;, revision: &apos;1ef9f18787*&apos;
+System info: os.name: &apos;Mac OS X&apos;, os.arch: &apos;x86_64&apos;, os.version: &apos;15.3.1&apos;, java.version: &apos;17.0.9&apos;
+Driver info: driver.version: RemoteWebDriver
+	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:168)
+	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:368)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:362)
+	at pages.TrendingPage.getSkyTubePageTitle(TrendingPage.java:34)
+	at stepDefinitions.SubscribeSteps.user_is_on_trending_tab(SubscribeSteps.java:30)
+	at ✽.User is on Trending tab(file:///Users/mathumathibalakrishnan/eclipse/Mathumathi_2025/Team4_AppiumAvengers/src/test/resources/features/subscribe.feature:5)
+</pre></div><a href='#' onClick='toggleBox("stack-trace946448101", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace946448101'><pre>org.openqa.selenium.NoSuchElementException: Unable to find element with locator By.xpath: //android.widget.TextView[@text=&quot;SkyTube&quot;]
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Build info: version: &apos;4.31.0&apos;, revision: &apos;1ef9f18787*&apos;
+System info: os.name: &apos;Mac OS X&apos;, os.arch: &apos;x86_64&apos;, os.version: &apos;15.3.1&apos;, java.version: &apos;17.0.9&apos;
+Driver info: driver.version: RemoteWebDriver
+	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:168)
+	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:368)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:362)
+	at pages.TrendingPage.getSkyTubePageTitle(TrendingPage.java:34)
+	at stepDefinitions.SubscribeSteps.user_is_on_trending_tab(SubscribeSteps.java:30)
+	at ✽.User is on Trending tab(file:///Users/mathumathibalakrishnan/eclipse/Mathumathi_2025/Team4_AppiumAvengers/src/test/resources/features/subscribe.feature:5)
+</pre></div></td>
+<td>27</td>
+<td>testRunner.TestRunner@6650813a</td></tr>
+<tr>
+<td title='testRunner.TestRunner.runScenario()'><b>runScenario</b><br>Test class: testRunner.TestRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Validate if user able to Unsubscribe the video", "UnSubscribe functionality"</td>
+<td><div><pre>org.openqa.selenium.NoSuchElementException: Unable to find element with locator By.xpath: //android.widget.TextView[@text=&quot;SkyTube&quot;]
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Build info: version: &apos;4.31.0&apos;, revision: &apos;1ef9f18787*&apos;
+System info: os.name: &apos;Mac OS X&apos;, os.arch: &apos;x86_64&apos;, os.version: &apos;15.3.1&apos;, java.version: &apos;17.0.9&apos;
+Driver info: driver.version: RemoteWebDriver
+	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:168)
+	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:368)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:362)
+	at pages.TrendingPage.getSkyTubePageTitle(TrendingPage.java:34)
+	at stepDefinitions.SubscribeSteps.user_is_on_trending_tab(SubscribeSteps.java:30)
+	at ✽.User is on Trending tab(file:///Users/mathumathibalakrishnan/eclipse/Mathumathi_2025/Team4_AppiumAvengers/src/test/resources/features/unSubscribe.feature:5)
+</pre></div><a href='#' onClick='toggleBox("stack-trace1086811994", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1086811994'><pre>org.openqa.selenium.NoSuchElementException: Unable to find element with locator By.xpath: //android.widget.TextView[@text=&quot;SkyTube&quot;]
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Build info: version: &apos;4.31.0&apos;, revision: &apos;1ef9f18787*&apos;
+System info: os.name: &apos;Mac OS X&apos;, os.arch: &apos;x86_64&apos;, os.version: &apos;15.3.1&apos;, java.version: &apos;17.0.9&apos;
+Driver info: driver.version: RemoteWebDriver
+	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:168)
+	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:368)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:362)
+	at pages.TrendingPage.getSkyTubePageTitle(TrendingPage.java:34)
+	at stepDefinitions.SubscribeSteps.user_is_on_trending_tab(SubscribeSteps.java:30)
+	at ✽.User is on Trending tab(file:///Users/mathumathibalakrishnan/eclipse/Mathumathi_2025/Team4_AppiumAvengers/src/test/resources/features/unSubscribe.feature:5)
+</pre></div></td>
+<td>16</td>
+<td>testRunner.TestRunner@6650813a</td></tr>
+<tr>
+<td title='testRunner.TestRunner.runScenario()'><b>runScenario</b><br>Test class: testRunner.TestRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Validate if user able to subscribe the video", "Subscribe functionality"</td>
+<td><div><pre>org.openqa.selenium.NoSuchElementException: Unable to find element with locator By.xpath: //android.widget.TextView[@text=&quot;SkyTube&quot;]
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Build info: version: &apos;4.31.0&apos;, revision: &apos;1ef9f18787*&apos;
+System info: os.name: &apos;Mac OS X&apos;, os.arch: &apos;x86_64&apos;, os.version: &apos;15.3.1&apos;, java.version: &apos;17.0.9&apos;
+Driver info: driver.version: RemoteWebDriver
+	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:168)
+	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:368)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:362)
+	at pages.TrendingPage.getSkyTubePageTitle(TrendingPage.java:34)
+	at stepDefinitions.SubscribeSteps.user_is_on_trending_tab(SubscribeSteps.java:30)
+	at ✽.User is on Trending tab(file:///Users/mathumathibalakrishnan/eclipse/Mathumathi_2025/Team4_AppiumAvengers/src/test/resources/features/subscribe.feature:5)
+</pre></div><a href='#' onClick='toggleBox("stack-trace217062446", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace217062446'><pre>org.openqa.selenium.NoSuchElementException: Unable to find element with locator By.xpath: //android.widget.TextView[@text=&quot;SkyTube&quot;]
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Build info: version: &apos;4.31.0&apos;, revision: &apos;1ef9f18787*&apos;
+System info: os.name: &apos;Mac OS X&apos;, os.arch: &apos;x86_64&apos;, os.version: &apos;15.3.1&apos;, java.version: &apos;17.0.9&apos;
+Driver info: driver.version: RemoteWebDriver
+	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:168)
+	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:368)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:362)
+	at pages.TrendingPage.getSkyTubePageTitle(TrendingPage.java:34)
+	at stepDefinitions.SubscribeSteps.user_is_on_trending_tab(SubscribeSteps.java:30)
+	at ✽.User is on Trending tab(file:///Users/mathumathibalakrishnan/eclipse/Mathumathi_2025/Team4_AppiumAvengers/src/test/resources/features/subscribe.feature:5)
+</pre></div></td>
+<td>23</td>
+<td>testRunner.TestRunner@6650813a</td></tr>
+>>>>>>> 22e7530fa20d069445f7a5116911e2d76ec357a2
 </table><p>
 </body>
 </html>

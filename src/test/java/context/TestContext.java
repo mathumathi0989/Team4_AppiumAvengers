@@ -4,12 +4,14 @@ import base.baseTest;
 import io.appium.java_client.AppiumDriver;
 import pages.SearchPage;
 import pages.SubscribePage;
+import pages.TrendingPage;
 import utils.ExcelReader;
 
 public class TestContext {
 
 	private AppiumDriver driver;
-    protected SubscribePage loginPage;
+    protected SubscribePage subscribePage;
+    protected TrendingPage trendingPage;
     private ScenarioContext scenarioContext;
     private ExcelReader excelReader;
     protected SearchPage searchPage;
@@ -20,11 +22,11 @@ public class TestContext {
         this.excelReader = new ExcelReader();  
     }
 
-    public SubscribePage getLoginPage() {
-        if (this.loginPage == null) {
-            this.loginPage = new SubscribePage(getDriver()); 
+    public SubscribePage getSubscribePage() {
+        if (this.subscribePage == null) {
+            this.subscribePage = new SubscribePage(getDriver()); 
         }
-        return this.loginPage;
+        return this.subscribePage;
     }
     
     
@@ -35,6 +37,13 @@ public class TestContext {
         return this.searchPage;
     }
 
+    public TrendingPage getTrendingPage() {
+        if (this.trendingPage == null) {
+            this.trendingPage = new TrendingPage(getDriver()); 
+        }
+        return this.trendingPage;
+    }
+    
     public AppiumDriver getDriver() {
         if (this.driver == null) {
             this.driver = baseTest.getDriver();

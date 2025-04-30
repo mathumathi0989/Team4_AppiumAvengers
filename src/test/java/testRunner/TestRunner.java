@@ -4,10 +4,12 @@ import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
 
 @CucumberOptions(
-        features = "src/test/resources/features/searchChannel.feature",
+        features = "src/test/resources/features/",
         glue = {"stepDefinitions","hooks"},
-        plugin = {"pretty", "json:target/cucumber-reports/CucumberTestReport.json"}
+        plugin = {"pretty", "html:target/cucumber-reports/CucumberTestReport.html"}
 )
 public class TestRunner  extends AbstractTestNGCucumberTests{
 
+	
+	
 }
