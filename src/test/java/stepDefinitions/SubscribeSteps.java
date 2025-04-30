@@ -23,23 +23,46 @@ public class SubscribeSteps {
 	    // Creating a logger
 	    private static Logger logger = LogManager.getLogger();
 
+	    
 	    @Given("User is on Trending tab")
 	    public void user_is_on_trending_tab() {
-	    
-	      System.out.println("user is on trending tab");
+	    	logger.info("App launched and Trending tab showed");
+	    	testContext.getTrendingPage().getSkyTubePageTitle();
+	    	testContext.getTrendingPage().enterSearch("jingucha");
+	     
 	    }
 	    @When("User click on three dots in any video")
 	    public void user_click_on_three_dots_in_any_video() {
-	       System.out.println("user clicks three dots");
+	     
 	    }
 	    @When("click on channel")
 	    public void click_on_channel() {
-	    	 System.out.println("user clicks on channel");
+	    	
 	    }
-	    @Then("User should see the {string} option")
-	    public void user_should_see_the_option(String string) {
-	    	 System.out.println("user should see the subscribe");
+	    @Then("User should see the subscribe option")
+	    public void user_should_see_the_subscribe_option() {
+	    	 System.out.println("user should see the subscribe option");
 	       
 	    }
+	    
+	    @When("User click on any video")
+	    public void user_click_on_any_video() {
+	      
+	    }
+	    @Then("User should see the subscribe button")
+	    public void user_should_see_the_subscribe_button() {
+	   	 System.out.println("user should see the subscribe button");
+	    }
+	  
+	    @When("click on subscribe")
+	    public void click_on_subscribe() {
+	      
+	    }
+	    @Then("Toast message {string} should be displayed for subscribe")
+	    public void toast_message_should_be_displayed_for_subscribe(String string) {
+	   	 System.out.println("Toast message displayed for subscribe");
+	    }
+
+	    
     
 }
