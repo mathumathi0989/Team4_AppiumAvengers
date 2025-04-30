@@ -6,7 +6,7 @@
 
 Feature: VideoBlock Functionality
  Background:  
-   Given    User launched the app
+   Given    User launched the app 
 
  
  Scenario: Verify the video blocker and block videos with a specific keyword

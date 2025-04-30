@@ -9,4 +9,6 @@
 allure-report/
  # Test outputs
  screenshots/
+test-output/
+.DS_Store
 *.html

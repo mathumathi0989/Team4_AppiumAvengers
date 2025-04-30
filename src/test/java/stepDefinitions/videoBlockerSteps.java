@@ -7,9 +7,7 @@ import io.cucumber.java.en.When;
 public class videoBlockerSteps {
 	
 	
-	@Given("User launched the app")
-	public void user_launched_the_app() { }
-
+	
 	@Given("the user navigates to the Video Blocker settings")
 	public void the_user_navigates_to_the_video_blocker_settings() { }
 
