@@ -43,7 +43,7 @@ public class baseTest {
 	        AppiumServiceBuilder builder = new AppiumServiceBuilder()
 	        		  .withAppiumJS(new File(appiumJsPath))
 	                  .usingDriverExecutable(new File(nodeExecutablePath))
-	                  .withArgument(() -> "--use-plugins", "appium-reporter-plugin")
+	                  .withArgument(() -> "--use-plugins=appium-reporter-plugin")
 	                  .usingPort(4723)
 	                  .withEnvironment(environment);
 
@@ -64,6 +64,19 @@ public class baseTest {
             } else {
                 System.out.println("Appium server is not running.");
             }
+         // Kill Appium Node process if still running
+            try {
+                String os = System.getProperty("os.name").toLowerCase();
+                if (os.contains("mac")) {
+                    Runtime.getRuntime().exec("killall node");
+                } else if (os.contains("win")) {
+                    Runtime.getRuntime().exec("taskkill /F /IM node.exe");
+                }
+                System.out.println("Appium (Node) process killed.");
+            } catch (IOException e) {
+                System.out.println("Failed to kill Appium process: " + e.getMessage());
+            }
+            
         }
 	    
 	  public static void setup() throws MalformedURLException, Exception {
@@ -80,10 +93,16 @@ public class baseTest {
 						    .setAppPackage(ConfigManager.getProperty("app.package"))
 						    .setAppActivity(ConfigManager.getProperty("app.activity"))
 					    .setApp(ConfigManager.getAppPath())
-				  .setNoReset(false)  // <-- this avoids uninstalling the app
-				  .setFullReset(true);   // <-- avoids full reinstall
+				  .setNoReset(true)  // <-- Keeps app and data between sessions
+				  .setFullReset(false);   // <-- Prevents uninstalling the app
 				 driver = new AndroidDriver(new URL(ConfigManager.getProperty("appium.server.url")), options);			
-							    }
+				 driver.executeScript("plugin: setReporterPluginProperties", ImmutableMap.of(
+			                "enabled", true,
+			                "projectName", "Numpy Ninja Project",
+			                "reportTitle", "Appium Test Execution Report",
+			                "teamName", "Appium Avengers Team"
+			        ));					   
+		  }
 		  else if (platform.equalsIgnoreCase("iOS")) {
 			  XCUITestOptions options = new XCUITestOptions()
 					  .setUdid(ConfigManager.getProperty("udid"))
@@ -92,12 +111,7 @@ public class baseTest {
 					  .setAutoAcceptAlerts(true)
 					  .setShowXcodeLog(true); 
 			  driver = new IOSDriver(new URL(ConfigManager.getProperty("appium.server.url")), options);
-			  driver.executeScript("plugin: setReporterPluginProperties", ImmutableMap.of(
-		                "enabled", true,
-		                "projectName", "Numpy Ninja Project",
-		                "reportTitle", "Appium Test Execution Report",
-		                "teamName", "Appium Avengers Team"
-		        ));
+			 
 			  
 			 	  }
 //		  if (!AppiumReporterUtil.isDeviceFarm(driver)) {
@@ -139,7 +153,8 @@ export PATH=$PATH:$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/tools
 		    String adbPath = ConfigManager.getProperty("android.adb.path");
 	        System.out.println("Starting Android Emulator: " + avdName);
 	        // Start emulator process
-	        ProcessBuilder emulatorPb = new ProcessBuilder(emulatorPath, "-avd", avdName);
+	        ProcessBuilder emulatorPb = new ProcessBuilder(emulatorPath, "-avd", avdName,
+	                "-wipe-data");
 	        emulatorPb.redirectErrorStream(true);
 	        emulatorPb.start();
 
@@ -153,6 +168,7 @@ export PATH=$PATH:$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/tools
 	        Thread.sleep(10000); 
 	        System.out.println("Emulator is ready.");      
 	    }
+	  
 	  
 	  public static void stopAndroidEmulator() {
 		    try {

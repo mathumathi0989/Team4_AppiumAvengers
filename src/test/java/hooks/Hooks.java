@@ -43,12 +43,14 @@ public class Hooks {
     @After
     public void teardown(Scenario scenario) {
         System.out.println("Closing App");
-     //   AppiumDriver driver = baseTest.getDriver();  // Get driver safely
-        try {
-            baseTest.terminateAndResetApp();  // Ensure app is reset and closed after each scenario
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        // Use driver from baseTest
+        AppiumDriver driver = baseTest.getDriver();
+        if (driver != null) {
+            try {
+                baseTest.terminateAndResetApp();  // Ensure clean state
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         String sessionId = AppiumReporterUtil.getSessionId(driver);
         String testName = scenario.getName();
         String status = scenario.getStatus().name(); 
@@ -63,9 +65,9 @@ public class Hooks {
         default:
             AppiumReporterUtil.setSkippedTestInfo(testName, "SKIPPED", status);
     }
-
+        }
         baseTest.tearDown();  // Ensure driver is properly closed
-        baseTest.stopServer();
+      //  baseTest.stopServer();
     }
 
     @AfterStep
