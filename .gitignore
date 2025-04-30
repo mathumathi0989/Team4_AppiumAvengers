@@ -1,6 +1,6 @@
 /target/
  # Config files
-# config.properties
+config.properties
  # Logs
  logs/
  *.log
