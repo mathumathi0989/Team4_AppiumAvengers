@@ -31,10 +31,23 @@ public class ConfigManager {
 	        return properties.getProperty(key);
 	    }
 	    
-	    public static String getAppPath() {
-	        String appName = getProperty("app.name");  // e.g., SkyTube-Oss-2.995.apk
-	        return Paths.get(System.getProperty("user.dir"), "apps", appName).toString();
-	    }
+//	    public static String getAppPath() {
+//	        String appName = getProperty("app.name");  // e.g., SkyTube-Oss-2.995.apk
+//	        return Paths.get(System.getProperty("user.dir"), "apps", appName).toString();
+//	    }
+//	    
 	    
+	    public static String getAppPath() {
+	        String platform = getProperty("platform").toLowerCase();
+	        String appName = getProperty("app.name"); // e.g., SkyTube-Oss-2.995.apk or Spotube-iOS.ipa
+
+	        if ("android".equalsIgnoreCase(platform)) {
+	            return Paths.get(System.getProperty("user.dir"), "apps", appName).toString();
+	        } else if ("ios".equalsIgnoreCase(platform)) {
+	            return Paths.get(System.getProperty("user.dir"), "apps", appName).toString();
+	        } else {
+	            throw new IllegalStateException("Platform not specified or unsupported.");
+	        }
+	    }
 	    
 }
