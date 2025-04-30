@@ -90,11 +90,12 @@ public class baseTest {
 						.setAppWaitActivity("*")						
 						 .setUdid(ConfigManager.getProperty("device.name"))
 						 .setIgnoreHiddenApiPolicyError(true)
-						    .setAppPackage(ConfigManager.getProperty("app.package"))
+						 .setAppPackage(ConfigManager.getProperty("app.package"))
 						    .setAppActivity(ConfigManager.getProperty("app.activity"))
 					    .setApp(ConfigManager.getAppPath())
 				  .setNoReset(true)  // <-- Keeps app and data between sessions
 				  .setFullReset(false);   // <-- Prevents uninstalling the app
+
 				 driver = new AndroidDriver(new URL(ConfigManager.getProperty("appium.server.url")), options);			
 				 driver.executeScript("plugin: setReporterPluginProperties", ImmutableMap.of(
 			                "enabled", true,
