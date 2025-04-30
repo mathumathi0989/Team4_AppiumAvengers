@@ -1,6 +1,6 @@
 /target/
  # Config files
-config.properties
+/src/test/resources/config.properties
  # Logs
  logs/
  *.log
