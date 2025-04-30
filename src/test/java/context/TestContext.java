@@ -2,6 +2,7 @@ package context;
 
 import base.baseTest;
 import io.appium.java_client.AppiumDriver;
+import pages.SearchPage;
 import pages.SubscribePage;
 import utils.ExcelReader;
 
@@ -11,6 +12,8 @@ public class TestContext {
     protected SubscribePage loginPage;
     private ScenarioContext scenarioContext;
     private ExcelReader excelReader;
+    protected SearchPage searchPage;
+
     
     public TestContext() throws Exception {
         this.scenarioContext = new ScenarioContext();  
@@ -22,6 +25,14 @@ public class TestContext {
             this.loginPage = new SubscribePage(getDriver()); 
         }
         return this.loginPage;
+    }
+    
+    
+    public SearchPage getSearchPage() {
+        if (this.searchPage == null) {
+            this.searchPage = new SearchPage(getDriver()); 
+        }
+        return this.searchPage;
     }
 
     public AppiumDriver getDriver() {
