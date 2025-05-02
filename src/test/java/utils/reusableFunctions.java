@@ -23,6 +23,10 @@ public class reusableFunctions {
 	    }
 	    
 	 
+	    public WebElement waitForElementPresence(By locator) {
+	        return wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+	    }
+	    
 	    public void clickElement(By locator) {
 	        WebElement element = waitForElementVisible(locator);  
 	        element.click();  
