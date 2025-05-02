@@ -12,13 +12,11 @@ public class TestContext {
 	private AppiumDriver driver;
     protected SubscribePage subscribePage;
     protected TrendingPage trendingPage;
-    private ScenarioContext scenarioContext;
     private ExcelReader excelReader;
     protected SearchPage searchPage;
 
     
     public TestContext() throws Exception {
-        this.scenarioContext = new ScenarioContext();  
         this.excelReader = new ExcelReader();  
     }
 
@@ -51,9 +49,7 @@ public class TestContext {
         return this.driver;
     }
 
-    public ScenarioContext getScenarioContext() {
-        return scenarioContext;  
-    }
+ 
     
     public ExcelReader getExcelReader() {
         return excelReader;
