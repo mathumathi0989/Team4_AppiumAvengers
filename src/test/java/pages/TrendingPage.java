@@ -20,7 +20,8 @@ public class TrendingPage {
 	    }
 
 	    public String getSkyTubePageTitle() {
-	    return	driver.findElement(skyTubePageTitle).getText();  	
+
+			return	driver.findElement(skyTubePageTitle).getText();
 	    }
 	
 	

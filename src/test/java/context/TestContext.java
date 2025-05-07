@@ -2,6 +2,7 @@ package context;
 
 import base.baseTest;
 import io.appium.java_client.AppiumDriver;
+import pages.DownloadPage;
 import pages.SubscribePage;
 import utils.ExcelReader;
 
@@ -11,7 +12,9 @@ public class TestContext {
     protected SubscribePage loginPage;
     private ScenarioContext scenarioContext;
     private ExcelReader excelReader;
-    
+    DownloadPage downloadPage;
+
+
     public TestContext() throws Exception {
         this.scenarioContext = new ScenarioContext();  
         this.excelReader = new ExcelReader();  
@@ -38,6 +41,10 @@ public class TestContext {
     public ExcelReader getExcelReader() {
         return excelReader;
     }
-    
-	    
+
+    public DownloadPage getDownloadPage() {
+        downloadPage = new DownloadPage(driver);
+        return downloadPage;
+    }
+
 }
