@@ -1,1 +1,14 @@
 /target/
+ # Config files
+/src/test/resources/config.properties
+ # Logs
+ logs/
+ *.log
+ # Allure reports
+ allure-results/ 
+allure-report/
+ # Test outputs
+ screenshots/
+test-output/
+.DS_Store
+*.html

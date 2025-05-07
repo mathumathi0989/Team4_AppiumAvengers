@@ -22,4 +22,21 @@ public class reusableFunctions {
 	        return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
 	    }
 	    
+	 
+	    public WebElement waitForElementPresence(By locator) {
+	        return wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+	    }
+	    
+	    public void clickElement(By locator) {
+	        WebElement element = waitForElementVisible(locator);  
+	        element.click();  
+	    }
+
+
+	    public String getTextFromElement(By locator) {
+	        WebElement element = waitForElementVisible(locator);  
+	        return element.getText(); 
+	    }
+	    
+	    
 }

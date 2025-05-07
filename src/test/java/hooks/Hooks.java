@@ -1,8 +1,11 @@
 package hooks;
 
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+
 
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -16,11 +19,9 @@ import io.cucumber.java.AfterStep;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import utils.AppiumReporterUtil;
-import utils.ConfigManager;
 
 public class Hooks {
 	private TestContext testContext;
-	private  AppiumDriver driver;
     public Hooks(TestContext context) {
         this.testContext = context;
     }
@@ -28,16 +29,30 @@ public class Hooks {
 
 
     @Before
-    public void setup() throws Exception {
+	public void setup() throws Exception {
+    	 System.out.println("Clearing App Data");
+    	 baseTest.clearAppData();  // Clear app data to reset the app's state
+    	 
+    	 System.out.println("Terminating and Resetting App");
+    	    baseTest.terminateAndResetApp(); // Ensure the app is fully reset and terminated
+
         System.out.println("Launching App");
        baseTest.setup();  
-        testContext.getScenarioContext().setContext("AppStarted", true);
+ 
+     
     }
 
     @After
-    public void teardown(Scenario scenario) {
+	public void teardown(Scenario scenario) {
         System.out.println("Closing App");
-     //   AppiumDriver driver = baseTest.getDriver();  // Get driver safely
+        // Use driver from baseTest
+        AppiumDriver driver = baseTest.getDriver();
+        if (driver != null) {
+            try {
+                baseTest.terminateAndResetApp();  // Ensure clean state
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         String sessionId = AppiumReporterUtil.getSessionId(driver);
         String testName = scenario.getName();
         String status = scenario.getStatus().name(); 
@@ -52,9 +67,9 @@ public class Hooks {
         default:
             AppiumReporterUtil.setSkippedTestInfo(testName, "SKIPPED", status);
     }
-
+        }
         baseTest.tearDown();  // Ensure driver is properly closed
-        baseTest.stopServer();
+      //  baseTest.stopServer();
     }
 
     @AfterStep
@@ -85,6 +100,9 @@ public class Hooks {
         System.out.println("Generating HTML report...");
         String report = AppiumReporterUtil.getReport();
         AppiumReporterUtil.deleteReportData();
-        AppiumReporterUtil.createReportFile(report, "report");
+        AppiumReporterUtil.createReportFile(report, "AppiumAvengersReport");
+//        baseTest.stopServer();
+//        baseTest.stopAndroidEmulator(); // <-- kill emulator after all tests
+        
     }
 }
