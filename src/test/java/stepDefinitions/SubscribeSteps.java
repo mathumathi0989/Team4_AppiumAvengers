@@ -22,6 +22,8 @@ public class SubscribeSteps {
 	 
 	    private TestContext testContext;
 	    private String actualText;
+	    private String searchText;
+	    private String expectedChannelTitle;
 	    public SubscribeSteps(TestContext testContext) {
 	        this.testContext = testContext;
 	    }
@@ -37,7 +39,7 @@ public class SubscribeSteps {
 	    
 	    @Given("User opens any video")
 	    public void user_opens_any_video() throws Exception {
-	    	String searchText = testContext.getExcelReader().getCellData("Sheet1", 2, 0);
+	    	searchText = testContext.getExcelReader().getCellData("Sheet1", 2, 0);
 	    	System.out.println("searchText is "+searchText);
 	    	testContext.getTrendingPage().enterSearch(searchText); 
 	    }
@@ -71,24 +73,34 @@ public class SubscribeSteps {
 	  
 	    @When("click on subscribe")
 	    public void click_on_subscribe() {
+	    	 expectedChannelTitle = testContext.getSubscribePage().getChannelTitle();
 	    	testContext.getSubscribePage().clickSubscribeButton();
 	    	System.out.println("subscribe button clicked");
+	    	testContext.getSubscribePage().clickBack();
+	    	testContext.getSubscribePage().clickBack();
+	    	testContext.getTrendingPage().clickMenu();
 	 
 	  
 	    }
 	    
 	    @When("click on subscribe link")
 	    public void click_on_subscribe_link() {
-	    	testContext.getSubscribePage().clickSubscribeLink();
 	    	
-	    	 
+	    	testContext.getSubscribePage().clickSubscribeLink();
+	    	expectedChannelTitle = testContext.getSubscribePage().getChannelVideoTitle();
+	    	testContext.getSubscribePage().clickBack();
+	    	testContext.getTrendingPage().clickMenu();
+	    	
 	    }
 	    
-	    @Then("Toast message {string} should be displayed for subscribe")
-	    public void toast_message_should_be_displayed_for_subscribe(String string) {
-	    	WebElement actualToast = testContext.getSubscribePage().verifyToastPresence();
-	    	 Assert.assertNotNull(actualToast, "Expected toast message did not appear");
-	    
+	    @Then("subscribed channel display under subscriptions")
+	    public void subscribed_channel_display_under_subscriptions() {
+//	    	WebElement actualToast = testContext.getSubscribePage().verifyToastPresence();
+//	    	 Assert.assertNotNull(actualToast, "Expected toast message did not appear");
+	    	String actualText = testContext.getSubscribePage().getSubscriptionName();
+	    	System.out.println("Subscribed name is "+actualText);
+	    	Assert.assertEquals(actualText, expectedChannelTitle);
+	    	
 	    }
 
 	    
