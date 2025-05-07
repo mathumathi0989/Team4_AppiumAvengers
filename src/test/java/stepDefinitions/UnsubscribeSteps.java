@@ -1,8 +1,9 @@
 package stepDefinitions;
 
+import static org.testng.Assert.assertTrue;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
 import context.TestContext;
@@ -18,13 +19,16 @@ public class UnsubscribeSteps {
     }
     // Creating a logger
     private static Logger logger = LogManager.getLogger();
-
+    private String actualChannelTitle;
+    private String expectedChannelTitle;
     
   	@When("User open already subscribed video")
   	public void user_open_already_subscribed_video() {
       	testContext.getTrendingPage().enterSearch("thanyasreevlog"); 
       	testContext.getSubscribePage().clickAlreadyVideo();
        	testContext.getSubscribePage().clickSubscribeButton();
+       	actualChannelTitle = testContext.getSubscribePage().getChannelTitle();
+       	System.out.println("actual Channel Title is "+actualChannelTitle);
        	testContext.getSubscribePage().clickBack();
   	}
 
@@ -60,13 +64,22 @@ public class UnsubscribeSteps {
   		testContext.getSubscribePage().clickAlreadyVideo();
   		testContext.getSubscribePage().clickUnSubscribeButton();
       	System.out.println("UnSubscribe button clicked");
+     	testContext.getSubscribePage().clickBack();
+     	testContext.getSubscribePage().clickBack();
+    	testContext.getTrendingPage().clickMenu();
+      	
   	}
   	
-  	@Then("Toast message {string} should be displayed for unsubscribe")
-  	public void toast_message_should_be_displayed_for_unsubscribe(String string) {
-  		WebElement actualToast = testContext.getSubscribePage().verifyToastPresence();
-     	 Assert.assertNotNull(actualToast, "Expected toast message did not appear");
-     	 
+  	@Then("channel should not display under subscription list")
+  	public void channel_should_not_display_under_subscription_list() {
+//  		WebElement actualToast = testContext.getSubscribePage().verifyToastPresence();
+//     	 Assert.assertNotNull(actualToast, "Expected toast message did not appear");
+  		
+  		boolean isPresent = testContext.getSubscribePage().isChannelPresentInSubscriptions(actualChannelTitle);
+  		Assert.assertFalse(isPresent, "Channel '" + actualChannelTitle + "' should NOT be present in subscriptions list.");
+    	
+  	
+     
   	}
 
 

@@ -2,12 +2,12 @@ package pages;
 
 
 import java.time.Duration;
+import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.AppiumDriver;
@@ -26,6 +26,7 @@ public class SubscribePage {
 	 private By subscribeToast = AppiumBy.xpath("//android.widget.Toast[contains(@text, 'Subscribed')]");
 	  private By unSubscribeToast =	AppiumBy.xpath("//android.widget.Toast[@text=\"Unsubscribed\"]");
 	  private By back = AppiumBy.accessibilityId("Navigate up");
+	  private By subscriptionsList = AppiumBy.id("free.rm.skytube.oss:id/sub_channel_name_text_view");
 	  
 	    public SubscribePage(AppiumDriver driver) {
 	        this.driver = driver;
@@ -84,6 +85,44 @@ public class SubscribePage {
 	   }
 	  
 
+	   public String getSubscriptionName() {
+		  return driver.findElement(subscriptionsList).getText();
+	   }
+	   
+	   
+	   public String getChannelTitle() {
+		   WebElement titleElement =driver.findElement(
+				    By.xpath("//android.widget.ScrollView//android.widget.TextView[1]")
+				);
+			String dynamicTitle = titleElement.getText();
+		
+				System.out.println("Channel title found: " + dynamicTitle);
+				 return dynamicTitle;
+	   }
+	   
+	   public String getChannelVideoTitle() {
+		   WebElement titleElement =driver.findElement(
+				    By.xpath("//android.widget.TextView[@resource-id=\"free.rm.skytube.oss:id/channel_text_view\"]")
+				);
+			String dynamicVideoChannelTitle = titleElement.getText();
+		
+				System.out.println("Channel title found: " + dynamicVideoChannelTitle);
+				 return dynamicVideoChannelTitle;
+		 
+	   }
+	   
+	   public boolean isChannelPresentInSubscriptions(String channelName) {
+		    List<WebElement> elements = driver.findElements(By.id("free.rm.skytube.oss:id/sub_channel_name_text"));
+		    for (WebElement el : elements) {
+		        String text = el.getText().trim();
+		        if (text.equalsIgnoreCase(channelName)) {
+		            System.out.println("Found channel: " + text);
+		            return true; // channel is present
+		        }
+		    }
+		    System.out.println("Channel NOT found in subscription list.");
+		    return false; // channel is not present
+		}
 	   
 
 }

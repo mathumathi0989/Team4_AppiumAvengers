@@ -19,14 +19,14 @@ Given User is on Trending tab
     Given User opens any video
    	When User click on any video
    	And click on subscribe
-   	Then Toast message "subscribe" should be displayed for subscribe
+   	Then subscribed channel display under subscriptions
    
    Scenario: Validate if user able to subscribe the video
     Given User opens any video
    	When User click on three dots in any video
    	And click on channel
    	And click on subscribe link
-   	Then Toast message "subscribe" should be displayed for subscribe
+   	Then subscribed channel display under subscriptions
    	
   
     

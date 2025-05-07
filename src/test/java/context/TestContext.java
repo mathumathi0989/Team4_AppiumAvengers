@@ -5,6 +5,8 @@ import io.appium.java_client.AppiumDriver;
 import pages.SearchPage;
 import pages.SubscribePage;
 import pages.TrendingPage;
+import pages.videoPage;
+import pages.watchVideoCleanerPage;
 import utils.ExcelReader;
 
 public class TestContext {
@@ -14,6 +16,9 @@ public class TestContext {
     protected TrendingPage trendingPage;
     private ExcelReader excelReader;
     protected SearchPage searchPage;
+    protected videoPage videoPage;
+    private watchVideoCleanerPage watchVideoCleanerPage;
+
 
     
     public TestContext() throws Exception {
@@ -42,9 +47,29 @@ public class TestContext {
         return this.trendingPage;
     }
     
+    public videoPage getvideoPage() {
+        if (this.videoPage == null) {
+            this.videoPage = new videoPage(getDriver()); 
+        }
+        return this.videoPage;
+    }
+    
+    
+    public watchVideoCleanerPage getwatchVideoCleanerPage() {
+        if (this.watchVideoCleanerPage == null) {
+            this.watchVideoCleanerPage = new watchVideoCleanerPage(getDriver()); 
+        }
+        return this.watchVideoCleanerPage;
+    }
+    
+
+    
     public AppiumDriver getDriver() {
         if (this.driver == null) {
             this.driver = baseTest.getDriver();
+            if (this.driver == null) {
+                throw new IllegalStateException("Driver is not initialized in baseTest");
+            }
         }
         return this.driver;
     }

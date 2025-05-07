@@ -1,5 +1,6 @@
 package base;
 
+import org.testng.annotations.AfterMethod;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -119,6 +120,9 @@ public class baseTest {
 			 
 			  
 			 	  }
+		    if (driver == null) {
+		        throw new IllegalStateException("Driver initialization failed in baseTest");
+		    }
 		  
 	    }
 
@@ -157,7 +161,8 @@ public class baseTest {
 //		    }
 //		}
 	  
-	    public static void tearDown() {
+	    @AfterMethod
+		public static void tearDown() {
 	        if (driver != null) {
 	            driver.quit();
 	            driver = null;

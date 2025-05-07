@@ -1,5 +1,7 @@
 package hooks;
 
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -27,7 +29,7 @@ public class Hooks {
 
 
     @Before
-    public void setup() throws Exception {
+	public void setup() throws Exception {
     	 System.out.println("Clearing App Data");
     	 baseTest.clearAppData();  // Clear app data to reset the app's state
     	 
@@ -36,11 +38,12 @@ public class Hooks {
 
         System.out.println("Launching App");
        baseTest.setup();  
-
+ 
+     
     }
 
     @After
-    public void teardown(Scenario scenario) {
+	public void teardown(Scenario scenario) {
         System.out.println("Closing App");
         // Use driver from baseTest
         AppiumDriver driver = baseTest.getDriver();

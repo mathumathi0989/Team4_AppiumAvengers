@@ -20,6 +20,9 @@ public class TrendingPage {
 	  private By channel = AppiumBy.xpath("//android.widget.TextView[@resource-id=\"free.rm.skytube.oss:id/title\" and @text=\"Channel...\"]");
 	 private By openChannel = AppiumBy.xpath("//android.widget.TextView[@resource-id=\"free.rm.skytube.oss:id/title\" and @text=\"Open Channel\"]");
 	 private By skyTubeNotificationAlert = AppiumBy.id("com.android.permissioncontroller:id/permission_allow_button");
+	 private By moreOptions = AppiumBy.accessibilityId("More options");
+	 private By menu = AppiumBy.accessibilityId("SkyTube");
+	 
 	 
 	 public TrendingPage(AppiumDriver driver) {
 	        this.driver = driver;
@@ -28,6 +31,9 @@ public class TrendingPage {
 	    }
 
 	    public void getSkyTubePageTitle() {
+	    	   if (driver == null) {
+	    	        throw new IllegalStateException("Driver is not initialized");
+	    	    }
 	    	try {
 	    	driver.findElement(changesPopup).click();
 	    	System.out.println("clicked changes popup");
@@ -65,5 +71,13 @@ public class TrendingPage {
 	    }
 	
 	
+	    public void clickMenu() {
+	    	driver.findElement(menu).click();
+	    }
 	
+	    public void clickTopRightThreeDots() {
+	    	driver.findElement(moreOptions).click();    }
+	    
+	    
+	    
 }
