@@ -1,8 +1,11 @@
 package hooks;
 
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+
 
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -16,11 +19,9 @@ import io.cucumber.java.AfterStep;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import utils.AppiumReporterUtil;
-import utils.ConfigManager;
 
 public class Hooks {
 	private TestContext testContext;
-	private  AppiumDriver driver;
     public Hooks(TestContext context) {
         this.testContext = context;
     }
@@ -28,7 +29,7 @@ public class Hooks {
 
 
     @Before
-    public void setup() throws Exception {
+	public void setup() throws Exception {
     	 System.out.println("Clearing App Data");
     	 baseTest.clearAppData();  // Clear app data to reset the app's state
     	 
@@ -37,11 +38,11 @@ public class Hooks {
 
         System.out.println("Launching App");
        baseTest.setup();  
-       // testContext.getScenarioContext().setContext("AppStarted", true);
+
     }
 
     @After
-    public void teardown(Scenario scenario) {
+	public void teardown(Scenario scenario) {
         System.out.println("Closing App");
         // Use driver from baseTest
         AppiumDriver driver = baseTest.getDriver();
@@ -99,8 +100,8 @@ public class Hooks {
         String report = AppiumReporterUtil.getReport();
         AppiumReporterUtil.deleteReportData();
         AppiumReporterUtil.createReportFile(report, "AppiumAvengersReport");
-        baseTest.stopServer();
-        baseTest.stopAndroidEmulator(); // <-- kill emulator after all tests
+//        baseTest.stopServer();
+//        baseTest.stopAndroidEmulator(); // <-- kill emulator after all tests
         
     }
 }

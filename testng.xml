@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="Suite">
-  <test thread-count="5" name="Test">
-    <classes>
-      <class name="appium.android.launch"/>
-    </classes>
-  </test> <!-- Test -->
+<suite name="MobileAutomationSuite" verbose="1">
+   <test name="Initial Run">
+        <classes>
+            <class name="testRunner.TestRunner"/>
+        </classes>
+    </test>
+    <test name="Rerun Failed Scenarios">
+        <classes>
+            <class name="testRunner.FailedTestRunner"/>
+        </classes>
+    </test>
 </suite> <!-- Suite -->

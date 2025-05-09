@@ -1,5 +1,6 @@
 package base;
 
+import org.testng.annotations.AfterMethod;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -16,7 +17,6 @@ import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.ios.options.XCUITestOptions;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
-import utils.AppiumReporterUtil;
 import utils.ConfigManager;
 
 public class baseTest {
@@ -43,7 +43,7 @@ public class baseTest {
 	        AppiumServiceBuilder builder = new AppiumServiceBuilder()
 	        		  .withAppiumJS(new File(appiumJsPath))
 	                  .usingDriverExecutable(new File(nodeExecutablePath))
-	                  .withArgument(() -> "--use-plugins=appium-reporter-plugin")
+	                  .withArgument(() -> "--use-plugins=appium-reporter-plugin,element-wait")
 	                  .usingPort(4723)
 	                  .withEnvironment(environment);
 
@@ -58,34 +58,34 @@ public class baseTest {
 	    }
 	    
 	    public static void stopServer() {
-            if (service != null && service.isRunning()) {
-                service.stop();
-                System.out.println("Appium server stopped.");
-            } else {
-                System.out.println("Appium server is not running.");
-            }
-         // Kill Appium Node process if still running
-            try {
-                String os = System.getProperty("os.name").toLowerCase();
-                if (os.contains("mac")) {
-                    Runtime.getRuntime().exec("killall node");
-                } else if (os.contains("win")) {
-                    Runtime.getRuntime().exec("taskkill /F /IM node.exe");
-                }
-                System.out.println("Appium (Node) process killed.");
-            } catch (IOException e) {
-                System.out.println("Failed to kill Appium process: " + e.getMessage());
-            }
-            
-        }
+           if (service != null && service.isRunning()) {
+               service.stop();
+               System.out.println("Appium server stopped.");
+           } else {
+               System.out.println("Appium server is not running.");
+           }
+        // Kill Appium Node process if still running
+           try {
+               String os = System.getProperty("os.name").toLowerCase();
+               if (os.contains("mac")) {
+                   Runtime.getRuntime().exec("killall node");
+               } else if (os.contains("win")) {
+                   Runtime.getRuntime().exec("taskkill /F /IM node.exe");
+               }
+               System.out.println("Appium (Node) process killed.");
+           } catch (IOException e) {
+               System.out.println("Failed to kill Appium process: " + e.getMessage());
+           }
+           
+       }
 	    
 	  public static void setup() throws MalformedURLException, Exception {
 		   
 	        String platform = ConfigManager.getProperty("platform").toLowerCase();
-	        startServer(platform);  
+	   //     startServer(platform);  
 	        
 		  if (platform.equalsIgnoreCase("Android")) {
-			  launchAndroidEmulator(ConfigManager.getProperty("avd.name"));
+			//  launchAndroidEmulator(ConfigManager.getProperty("avd.name"));
 				UiAutomator2Options options = new UiAutomator2Options()
 						.setAppWaitActivity("*")						
 						 .setUdid(ConfigManager.getProperty("device.name"))
@@ -102,7 +102,12 @@ public class baseTest {
 			                "projectName", "Numpy Ninja Project",
 			                "reportTitle", "Appium Test Execution Report",
 			                "teamName", "Appium Avengers Team"
-			        ));					   
+			        ));
+				driver.executeScript("plugin: setWaitPluginProperties", ImmutableMap.of(
+					                "timeout", 10000,
+					                "intervalBetweenAttempts", 500
+					        )
+								 );					   
 		  }
 		  else if (platform.equalsIgnoreCase("iOS")) {
 			  XCUITestOptions options = new XCUITestOptions()
@@ -115,41 +120,15 @@ public class baseTest {
 			 
 			  
 			 	  }
-//		  if (!AppiumReporterUtil.isDeviceFarm(driver)) {
-//	        driver.executeScript("plugin: setWaitPluginProperties", ImmutableMap.of(
-//	                "timeout", 10000,
-//	                "intervalBetweenAttempts", 500
-//	        ));
-//		  }
-	       
+		    if (driver == null) {
+		        throw new IllegalStateException("Driver initialization failed in baseTest");
+		    }
 		  
 	    }
 
-//	  private static void startAppiumServer() {
-//		    /*
-//		     #Set Appium PATH in Env variable
-//		export APPIUM_JS_PATH=/Users/{{UserName}}/.npm-global/lib/node_modules/appium/build/lib/main.js 
-//		     */
-//		  System.out.println("check if its comes inside appium");
-//	        String appiumJsPath = System.getenv("APPIUM_JS_PATH");  
-//	        if (appiumJsPath == null || appiumJsPath.isEmpty()) {
-//	            throw new IllegalStateException("Appium JS Path is not set in environment variables.");
-//	        }
-//	        System.out.println("Appium JS Path is: " + appiumJsPath);
-//	        service = new AppiumServiceBuilder()
-//	                .withAppiumJS(new File(appiumJsPath))
-//	                .usingAnyFreePort()
-//	                .build();
-//	        service.start();
-//	        System.out.println("Appium server started at " + service.getUrl());
-//	    }
 	  
 	  private static void launchAndroidEmulator(String avdName) throws IOException, InterruptedException {
-		  /*
-		   #Android SDK set it in env path
-export ANDROID_HOME=/Users/{{UserName}}/Library/Android/sdk
-export PATH=$PATH:$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools
-		   */
+
 		  String emulatorPath = ConfigManager.getProperty("android.emulator.path");
 		    String adbPath = ConfigManager.getProperty("android.adb.path");
 	        System.out.println("Starting Android Emulator: " + avdName);
@@ -182,7 +161,8 @@ export PATH=$PATH:$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/tools
 		    }
 		}
 	  
-	    public static void tearDown() {
+	    @AfterMethod
+		public static void tearDown() {
 	        if (driver != null) {
 	            driver.quit();
 	            driver = null;
