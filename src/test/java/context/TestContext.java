@@ -3,6 +3,7 @@ package context;
 import base.baseTest;
 import io.appium.java_client.AppiumDriver;
 import pages.BookmarkPage;
+import pages.PreferencesPage;
 import pages.SearchPage;
 import pages.SubscribePage;
 import pages.TrendingPage;
@@ -20,6 +21,7 @@ public class TestContext {
     protected videoPage videoPage;
     private watchVideoCleanerPage watchVideoCleanerPage;
     private BookmarkPage bookmarkPage;
+    private PreferencesPage preferencesPage;
 
 
     
@@ -89,5 +91,11 @@ public class TestContext {
         return this.bookmarkPage;
     }
     
+    public PreferencesPage getPreferencesPage() {
+        if (this.preferencesPage == null) {
+            this.preferencesPage = new PreferencesPage(getDriver()); 
+        }
+        return this.preferencesPage;
+    }
 	    
 }

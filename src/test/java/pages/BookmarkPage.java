@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.AppiumDriver;
-
+import io.cucumber.java.lv.Un;
 import utils.reusableFunctions;
 
 public class BookmarkPage {
@@ -17,20 +17,24 @@ public class BookmarkPage {
 	  reusableFunctions actions;
 
 
-      
 
 private By bookmarkTab = AppiumBy.xpath("//android.widget.TextView[@text=\"BOOKMARKS\"]");
-private By bookmarkLink = AppiumBy.xpath("//android.widget.TextView[@resource-id=\"free.rm.skytube.oss:id/title\" and @text=\"Bookmark\"]");
-private By unBookmarkLink = AppiumBy.xpath("//android.widget.TextView[@resource-id=\"free.rm.skytube.oss:id/title\" and @text=\"Unbookmark\"]");
-private By bookmarkButton = AppiumBy.id("free.rm.skytube.oss:id/channel_bookmark_button");
-private By unBookmarkButton = AppiumBy.id("free.rm.skytube.oss:id/channel_bookmark_button");
+
+////android.widget.TextView[@resource-id="free.rm.skytube.oss:id/title" and @text="Bookmark"]
+      
+private By bookmarkButton = AppiumBy.xpath("//android.widget.TextView[@resource-id=\"free.rm.skytube.oss:id/title\" and @text=\"Bookmark\"]");
+////android.widget.TextView[@resource-id="free.rm.skytube.oss:id/title" and @text="Unbookmark"]
+private By unBookmarkButton = AppiumBy.xpath("//android.widget.TextView[@resource-id=\"free.rm.skytube.oss:id/title\" and @text=\"Unbookmark\"]");
+
 private By bookmarkToast = AppiumBy.xpath("//android.widget.Toast[contains(@text, 'Bookmarked')]");
 private By unBookmarkToast = AppiumBy.xpath("//android.widget.Toast[@text=\"Unbookmarked\"]");
 private By back = AppiumBy.accessibilityId("Navigate up");
 private By noBookmarkedVideosText = AppiumBy.xpath("//android.widget.TextView[@resource-id=\"free.rm.skytube.oss:id/noBookmarkedVideosText\"]");
 private By threeDots = AppiumBy.xpath("(//android.widget.ImageButton[@resource-id=\"free.rm.skytube.oss:id/options_button\"])[1]");
-
-     
+////android.widget.ImageButton[@resource-id="free.rm.skytube.oss:id/options_button"]
+private By bookmarkDots = AppiumBy.xpath("//android.widget.ImageButton[@resource-id=\"free.rm.skytube.oss:id/options_button\"]");
+////android.widget.TextView[@resource-id="free.rm.skytube.oss:id/title" and @text="Unbookmark"]
+private By UnbookmarkInTab = AppiumBy.xpath("//android.widget.TextView[@resource-id=\"free.rm.skytube.oss:id/title\" and @text=\"Unbookmark\"]");  
 
 public BookmarkPage(AppiumDriver driver) {
 	        this.driver = driver;
@@ -45,31 +49,29 @@ public void clickBookmarkTab() {
     driver.findElement(bookmarkTab).click();
 }
 
-
+public String getNoBookmarkedVideosText() {
+    return actions.getTextFromElement(noBookmarkedVideosText);
+}
 
 public void clickThreeDots() {
     driver.findElement(threeDots).click();
 }
 
-public String clickBookmarkLink () {
-    driver.findElement(bookmarkLink).click();
-    return actions.getTextFromElement(bookmarkToast);
-}
-public String clickUnbookmarkLink () {
-    driver.findElement(unBookmarkLink).click();
-    return actions.getTextFromElement(unBookmarkToast);
-}
-
-public String getNoBookmarkedVideosText() {
-    return actions.getTextFromElement(noBookmarkedVideosText);
-}
 
 public String getBookmark() {
-    return actions.getTextFromElement(bookmarkLink);
+    return actions.getTextFromElement(bookmarkButton);
 }
 
+public void clickBookmarkButton() {
+    driver.findElement(bookmarkButton).click();
+}
+
+
+
 public String getUnbookmark() {
-    return actions.getTextFromElement(unBookmarkLink);
+    //waitForElementVisible(unBookmarkButton);
+    return actions.waitForElementPresence(unBookmarkButton).getText();
+    
 }
 
 
@@ -83,9 +85,7 @@ public String getUnbookmarkButton() {
     return actions.getTextFromElement(unBookmarkButton);
 }
 
-public void clickBookmarkButton() {
-    driver.findElement(bookmarkButton).click();
-}
+
 
 public void clickUnbookmarkButton() {
     driver.findElement(unBookmarkButton).click();
@@ -98,6 +98,18 @@ public WebElement verifyToastPresence() {
     ));
     return toast;
 }
+public void clickBookmarkDots() {
+    driver.findElement(bookmarkDots).click();
+    
+}
+
+public void clickUnbookmarkInTab() {
+    driver.findElement(UnbookmarkInTab).click();
+   
+}
+
+
+
 
 public void clickBack() {
     driver.findElement(back).click();
