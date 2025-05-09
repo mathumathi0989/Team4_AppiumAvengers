@@ -3,6 +3,7 @@ package context;
 import base.baseTest;
 import io.appium.java_client.AppiumDriver;
 import pages.BookmarkPage;
+import pages.DownloadPage;
 import pages.PreferencesPage;
 import pages.SearchPage;
 import pages.SubscribePage;
@@ -10,6 +11,7 @@ import pages.TrendingPage;
 import pages.videoPage;
 import pages.watchVideoCleanerPage;
 import utils.ExcelReader;
+
 
 public class TestContext {
 
@@ -22,7 +24,7 @@ public class TestContext {
     private watchVideoCleanerPage watchVideoCleanerPage;
     private BookmarkPage bookmarkPage;
     private PreferencesPage preferencesPage;
-
+    private DownloadPage downloadPage;
 
     
     public TestContext() throws Exception {
@@ -97,5 +99,13 @@ public class TestContext {
         }
         return this.preferencesPage;
     }
+
+    public DownloadPage getDownloadPage() {
+        if (this.downloadPage == null) {
+            this.downloadPage = new DownloadPage(getDriver()); 
+        }
+        return this.downloadPage;
+    }
+    
 	    
 }
