@@ -37,7 +37,7 @@ public class Hooks {
 
         System.out.println("Launching App");
        baseTest.setup();  
-        testContext.getScenarioContext().setContext("AppStarted", true);
+       // testContext.getScenarioContext().setContext("AppStarted", true);
     }
 
     @After

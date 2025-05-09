@@ -44,6 +44,8 @@ public class TestContext {
         return this.trendingPage;
     }
     
+   
+    
     public AppiumDriver getDriver() {
         if (this.driver == null) {
             this.driver = baseTest.getDriver();
@@ -51,9 +53,7 @@ public class TestContext {
         return this.driver;
     }
 
-    public ScenarioContext getScenarioContext() {
-        return scenarioContext;  
-    }
+ 
     
     public ExcelReader getExcelReader() {
         return excelReader;
