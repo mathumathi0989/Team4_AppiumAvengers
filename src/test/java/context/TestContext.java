@@ -53,6 +53,7 @@ public class TestContext {
         return this.trendingPage;
     }
     
+
     public videoPage getvideoPage() {
         if (this.videoPage == null) {
             this.videoPage = new videoPage(getDriver()); 

@@ -9,6 +9,7 @@ import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
 import utils.reusableFunctions;
 
+
 public class TrendingPage {
 	 private AppiumDriver driver;
 	  reusableFunctions actions;
