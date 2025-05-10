@@ -68,7 +68,7 @@ public class Hooks {
     }
         }
         baseTest.tearDown();  // Ensure driver is properly closed
-      //  baseTest.stopServer();
+        baseTest.stopServer();
     }
 
     @AfterStep
@@ -85,7 +85,6 @@ public class Hooks {
     	            File destination = new File(fileName);
     	            destination.getParentFile().mkdirs();  // Create directory if not exists
 
-    	            // Corrected: Use Files.copy instead of File.copy
     	            Files.copy(screenshotFile.toPath(), destination.toPath());
     	            System.out.println("Screenshot saved to: " + destination.getAbsolutePath());
     	        } catch (IOException e) {
@@ -100,8 +99,8 @@ public class Hooks {
         String report = AppiumReporterUtil.getReport();
         AppiumReporterUtil.deleteReportData();
         AppiumReporterUtil.createReportFile(report, "AppiumAvengersReport");
-//        baseTest.stopServer();
-//        baseTest.stopAndroidEmulator(); // <-- kill emulator after all tests
+        baseTest.stopServer();
+        baseTest.stopAndroidEmulator(); // <-- kill emulator after all tests
         
     }
 }

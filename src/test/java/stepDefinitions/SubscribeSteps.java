@@ -1,36 +1,25 @@
 package stepDefinitions;
 
-import static org.testng.Assert.assertTrue;
-
-import java.io.IOException;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
 import context.TestContext;
-import io.appium.java_client.AppiumDriver;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 
 public class SubscribeSteps {
-
-	
-	 
 	    private TestContext testContext;
-	    private String actualText;
 	    private String searchText;
 	    private String expectedChannelTitle;
 	    public SubscribeSteps(TestContext testContext) {
 	        this.testContext = testContext;
 	    }
-	    // Creating a logger
+	    
 	    private static Logger logger = LogManager.getLogger();
 
-	    
 	    @Given("User is on Trending tab")
 	    public void user_is_on_trending_tab() throws Exception {
 	    	logger.info("App launched and Trending tab showed");
@@ -39,8 +28,7 @@ public class SubscribeSteps {
 	    
 	    @Given("User opens any video")
 	    public void user_opens_any_video() throws Exception {
-	    	searchText = testContext.getExcelReader().getCellData("Sheet1", 2, 0);
-	    	System.out.println("searchText is "+searchText);
+	    	searchText = testContext.getExcelReader().getCellData("Sheet2", 2, 0);
 	    	testContext.getTrendingPage().enterSearch(searchText); 
 	    }
 	    
@@ -75,7 +63,6 @@ public class SubscribeSteps {
 	    public void click_on_subscribe() {
 	    	 expectedChannelTitle = testContext.getSubscribePage().getChannelTitle();
 	    	testContext.getSubscribePage().clickSubscribeButton();
-	    	System.out.println("subscribe button clicked");
 	    	testContext.getSubscribePage().clickBack();
 	    	testContext.getSubscribePage().clickBack();
 	    	testContext.getTrendingPage().clickMenu();
@@ -85,7 +72,6 @@ public class SubscribeSteps {
 	    
 	    @When("click on subscribe link")
 	    public void click_on_subscribe_link() {
-	    	
 	    	testContext.getSubscribePage().clickSubscribeLink();
 	    	expectedChannelTitle = testContext.getSubscribePage().getChannelVideoTitle();
 	    	testContext.getSubscribePage().clickBack();
@@ -95,12 +81,9 @@ public class SubscribeSteps {
 	    
 	    @Then("subscribed channel display under subscriptions")
 	    public void subscribed_channel_display_under_subscriptions() {
-//	    	WebElement actualToast = testContext.getSubscribePage().verifyToastPresence();
-//	    	 Assert.assertNotNull(actualToast, "Expected toast message did not appear");
 	    	String actualText = testContext.getSubscribePage().getSubscriptionName();
-	    	System.out.println("Subscribed name is "+actualText);
 	    	Assert.assertEquals(actualText, expectedChannelTitle);
-	    	
+	    	logger.info("User subscribed the channel");
 	    }
 
 	    

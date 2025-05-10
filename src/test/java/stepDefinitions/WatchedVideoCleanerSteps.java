@@ -15,19 +15,15 @@ public class WatchedVideoCleanerSteps {
     private int actualBookmark;
     private int expectedBookmark;
     
-	   public WatchedVideoCleanerSteps(TestContext testContext) {
+	public WatchedVideoCleanerSteps(TestContext testContext) {
 	        this.testContext = testContext;
-	    
 	    }
-	    // Creating a logger
-	    private static Logger logger = LogManager.getLogger();
+	private static Logger logger = LogManager.getLogger();
 
 	    
 	@When("User click on three dots in top right page")
 	public void user_click_on_three_dots_in_top_right_page() {
-	  
-		testContext.getTrendingPage().clickTopRightThreeDots();
-		
+		testContext.getTrendingPage().clickTopRightThreeDots();		
 	}
 	
 	@Then("User should see the Watched video cleaner option")
@@ -47,8 +43,9 @@ public class WatchedVideoCleanerSteps {
 	}
 	
 	@Given("User already watched downloads")
-	public void user_already_watched_downloads() {
+	public void user_already_watched_downloads() throws Exception {
 		testContext.getTrendingPage().enterSearch("frozen"); 
+		testContext.getTrendingPage().clickThreeDots();
 		testContext.getwatchVideoCleanerPage().doDownload();
 		testContext.getwatchVideoCleanerPage().allowPop();
 	  	testContext.getSubscribePage().clickBack();
@@ -61,12 +58,12 @@ public class WatchedVideoCleanerSteps {
 		testContext.getwatchVideoCleanerPage().enterWatchVideoCleaner();
 		testContext.getwatchVideoCleanerPage().clickClean();
 	}
+	
 	@Then("Toast message should be displayed for watched video cleaner")
 	public void toast_message_should_be_displayed_for_watched_video_cleaner() {
 		expectedBookmark = testContext.getwatchVideoCleanerPage().getBookMarksNo();
-	
 		Assert.assertNotEquals(actualBookmark, expectedBookmark);
-		 			
+		logger.info("Bookmarks and Downloads are removed using Watched video cleaner");
 	}
 	
 

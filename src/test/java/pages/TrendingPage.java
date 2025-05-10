@@ -56,6 +56,7 @@ public class TrendingPage {
 	    }
 	    
 	    public void clickThreeDots() {
+	    	actions.waitForElementPresence(threeDots);
 	    	driver.findElement(threeDots).click();
 	    }
 	    
