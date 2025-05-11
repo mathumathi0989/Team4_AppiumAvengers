@@ -53,6 +53,7 @@ public class SubscribePage {
 		   driver.findElement(clickOnVideo).click();
 	   }
 	   public void clickAlreadyVideo() {
+		   actions.waitForElementVisible(clickOnAlreadyVideo);
 		   driver.findElement(clickOnAlreadyVideo).click();
 	   }
 	   public String getSubscribeButton() {

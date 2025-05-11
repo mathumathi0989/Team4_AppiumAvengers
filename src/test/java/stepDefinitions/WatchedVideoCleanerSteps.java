@@ -49,7 +49,7 @@ public class WatchedVideoCleanerSteps {
 		testContext.getwatchVideoCleanerPage().doDownload();
 		testContext.getwatchVideoCleanerPage().allowPop();
 	  	testContext.getSubscribePage().clickBack();
-	  	testContext.getSubscribePage().clickBack();
+	 // 	testContext.getSubscribePage().clickBack();
 	}
 	
 	

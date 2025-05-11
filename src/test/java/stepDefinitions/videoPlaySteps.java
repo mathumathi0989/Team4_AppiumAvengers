@@ -98,6 +98,13 @@ public class videoPlaySteps {
 	public void user_click_on_video_and_watch_sometime() throws Exception {
 		testContext.getvideoPage().clickVideo();
 		try {
+		testContext.getvideoPage().allowviewingFullScreenPopup();
+		}
+		catch (Exception e) {
+			
+		}
+		try {
+			
   	    	testContext.getTrendingPage().getAlertNotification();
   	    	testContext.getvideoPage().clickskipButton();
   	    	

@@ -21,12 +21,12 @@ public class watchVideoCleanerPage {
     private By cancel = AppiumBy.id("free.rm.skytube.oss:id/md_buttonDefaultNegative");
     private By bookmarksTab = AppiumBy.androidUIAutomator("new UiSelector().text(\"BOOKMARKS\")");
     private By allowPopup = AppiumBy.id("com.android.permissioncontroller:id/permission_allow_button");
-   
+    private By allow = AppiumBy.androidUIAutomator("new UiSelector().resourceId(\"com.android.permissioncontroller:id/permission_allow_button\")"); 
 	 public watchVideoCleanerPage(AppiumDriver driver) {
 	        this.driver = driver;
 	  actions = new reusableFunctions(driver, 30);// Pass driver to LoginPage
 	 	   
-	    }
+	    }  
 
 	 public String getwatchVideoCleaner() {
 		 return driver.findElement(watchVideoCleaner).getText();
@@ -65,10 +65,10 @@ public class watchVideoCleanerPage {
 	 
 	 public void allowPop() throws Exception {
 	
-			 Thread.sleep(1000);
+			 Thread.sleep(2000);
+	actions.waitForElementVisible(allow);
+	driver.findElement(allow).click();
 		
-		 driver.findElement(allowPopup).click();
-			
 			 
 			 try {
 				 driver.findElement(allowPopup).click();

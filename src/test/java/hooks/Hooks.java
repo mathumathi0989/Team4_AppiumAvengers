@@ -1,11 +1,10 @@
 package hooks;
 
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.nio.file.Files;
-
 
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -13,12 +12,16 @@ import org.openqa.selenium.TakesScreenshot;
 import base.baseTest;
 import context.TestContext;
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.options.UiAutomator2Options;
 import io.cucumber.java.After;
 import io.cucumber.java.AfterAll;
 import io.cucumber.java.AfterStep;
 import io.cucumber.java.Before;
+import io.cucumber.java.BeforeAll;
 import io.cucumber.java.Scenario;
 import utils.AppiumReporterUtil;
+import utils.ConfigManager;
 
 public class Hooks {
 	private TestContext testContext;
@@ -27,16 +30,18 @@ public class Hooks {
     }
     
 
-
+@BeforeAll
+public static void launchEmulator() throws Exception, InterruptedException {
+	baseTest.launchAndroidEmulator();
+	
+}
     @Before
 	public void setup() throws Exception {
-    	 System.out.println("Clearing App Data");
+    	baseTest.startServer();
     	 baseTest.clearAppData();  // Clear app data to reset the app's state
-    	 
-    	 System.out.println("Terminating and Resetting App");
+
     	    baseTest.terminateAndResetApp(); // Ensure the app is fully reset and terminated
 
-        System.out.println("Launching App");
        baseTest.setup();  
 
     }
@@ -67,8 +72,8 @@ public class Hooks {
             AppiumReporterUtil.setSkippedTestInfo(testName, "SKIPPED", status);
     }
         }
-        baseTest.tearDown();  // Ensure driver is properly closed
-        baseTest.stopServer();
+   //     baseTest.tearDown();  // Ensure driver is properly closed
+    //    baseTest.stopServer();
     }
 
     @AfterStep
@@ -99,8 +104,11 @@ public class Hooks {
         String report = AppiumReporterUtil.getReport();
         AppiumReporterUtil.deleteReportData();
         AppiumReporterUtil.createReportFile(report, "AppiumAvengersReport");
+        baseTest.tearDown();
         baseTest.stopServer();
         baseTest.stopAndroidEmulator(); // <-- kill emulator after all tests
+        //     baseTest.tearDown();  // Ensure driver is properly closed
+        //    baseTest.stopServer();
         
     }
 }

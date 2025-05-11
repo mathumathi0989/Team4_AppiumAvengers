@@ -1,12 +1,14 @@
 package base;
 
-import org.testng.annotations.AfterMethod;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
+
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.Listeners;
 
 import com.google.common.collect.ImmutableMap;
 
@@ -19,16 +21,17 @@ import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
 import utils.ConfigManager;
 
+
 public class baseTest {
 
-	  private static AppiumDriver driver;
+	 private static AppiumDriver driver;
 	  private static AppiumDriverLocalService service;
 	  
 	    public static AppiumDriverLocalService getService() {
 	        return service;
 	    }
 	    
-	    public static void startServer(final String platformName) throws Exception, Exception {
+	    public static void startServer() throws Exception, Exception {
 	    	String appiumJsPath = ConfigManager.getProperty("appium.js.path");
 	        System.out.println("Appium JS Path is: " + appiumJsPath);
 	        if (appiumJsPath == null || appiumJsPath.isEmpty()) {
@@ -58,34 +61,34 @@ public class baseTest {
 	    }
 	    
 	    public static void stopServer() {
-           if (service != null && service.isRunning()) {
-               service.stop();
-               System.out.println("Appium server stopped.");
-           } else {
-               System.out.println("Appium server is not running.");
-           }
-        // Kill Appium Node process if still running
-           try {
-               String os = System.getProperty("os.name").toLowerCase();
-               if (os.contains("mac")) {
-                   Runtime.getRuntime().exec("killall node");
-               } else if (os.contains("win")) {
-                   Runtime.getRuntime().exec("taskkill /F /IM node.exe");
-               }
-               System.out.println("Appium (Node) process killed.");
-           } catch (IOException e) {
-               System.out.println("Failed to kill Appium process: " + e.getMessage());
-           }
-           
-       }
+          if (service != null && service.isRunning()) {
+              service.stop();
+              System.out.println("Appium server stopped.");
+          } else {
+              System.out.println("Appium server is not running.");
+          }
+       // Kill Appium Node process if still running
+          try {
+              String os = System.getProperty("os.name").toLowerCase();
+              if (os.contains("mac")) {
+                  Runtime.getRuntime().exec("killall node");
+              } else if (os.contains("win")) {
+                  Runtime.getRuntime().exec("taskkill /F /IM node.exe");
+              }
+              System.out.println("Appium (Node) process killed.");
+          } catch (IOException e) {
+              System.out.println("Failed to kill Appium process: " + e.getMessage());
+          }
+          
+      }
 	    
 	  public static void setup() throws MalformedURLException, Exception {
 		   
 	        String platform = ConfigManager.getProperty("platform").toLowerCase();
-	        startServer(platform);  
+	    //    startServer(platform);  
 	        
 		  if (platform.equalsIgnoreCase("Android")) {
-			  launchAndroidEmulator(ConfigManager.getProperty("avd.name"));
+			//  launchAndroidEmulator(ConfigManager.getProperty("avd.name"));
 				UiAutomator2Options options = new UiAutomator2Options()
 						.setAppWaitActivity("*")						
 						 .setUdid(ConfigManager.getProperty("device.name"))
@@ -127,8 +130,8 @@ public class baseTest {
 	    }
 
 	  
-	  private static void launchAndroidEmulator(String avdName) throws IOException, InterruptedException {
-
+	  public static void launchAndroidEmulator() throws IOException, InterruptedException {
+		  String avdName = ConfigManager.getProperty("avd.name");
 		  String emulatorPath = ConfigManager.getProperty("android.emulator.path");
 		    String adbPath = ConfigManager.getProperty("android.adb.path");
 	        System.out.println("Starting Android Emulator: " + avdName);
@@ -145,7 +148,7 @@ public class baseTest {
 	        Process waitProcess = adbWaitPb.start();
 	        waitProcess.waitFor();  // This will block until the emulator is ready
 
-	        Thread.sleep(10000); 
+	        Thread.sleep(20000); 
 	        System.out.println("Emulator is ready.");      
 	    }
 	  

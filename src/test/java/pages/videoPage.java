@@ -33,7 +33,7 @@ public class videoPage {
 	 private By resumeAlert = AppiumBy.id("free.rm.skytube.oss:id/md_content");
 	 private By resumeNo = AppiumBy.id("free.rm.skytube.oss:id/md_buttonDefaultNegative");
 	 private By resumeYes = AppiumBy.id("free.rm.skytube.oss:id/md_buttonDefaultPositive");
-	 
+	 private By viewingFullScreenPopup = AppiumBy.id("android:id/ok");
 	  
 		 public videoPage(AppiumDriver driver) {
 		        this.driver = driver;
@@ -54,6 +54,7 @@ public class videoPage {
 	}
 	
 	public String getstartTime() {
+		//actions.waitForElementVisible(startTime);
 	return	driver.findElement(startTime).getText();
 		}
 			
@@ -153,5 +154,10 @@ public class videoPage {
 	        }
 	        return null; // keep waiting
 	    });
+	}
+	
+	public void allowviewingFullScreenPopup() {
+		actions.waitForElementPresence(viewingFullScreenPopup);
+		driver.findElement(viewingFullScreenPopup).click();
 	}
 }
