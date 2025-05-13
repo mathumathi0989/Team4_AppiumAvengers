@@ -85,7 +85,7 @@ public class baseTest {
 		    startServer(platform);
 
 		if (platform.equalsIgnoreCase("Android")) {
-			//  launchAndroidEmulator(ConfigManager.getProperty("avd.name"));
+			launchAndroidEmulator(ConfigManager.getProperty("avd.name"));
 			UiAutomator2Options options = new UiAutomator2Options()
 					.setAppWaitActivity("*")
 					.setUdid(ConfigManager.getProperty("device.name"))
