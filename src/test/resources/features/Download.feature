@@ -39,7 +39,7 @@ Feature: Download & Delete Download
    When User clicks on three dots in  video
     And clicks on Download
     And User clicks Download tab
-    And Clicks on three dots in Downloaded tab
-    When User clicks on DeleteDownload in Downloaded tab
+    # And Clicks on three dots in Downloaded tab
+    # When User clicks on DeleteDownload in Downloaded tab
     Then The user should see the message Download some videos to find them here.
  

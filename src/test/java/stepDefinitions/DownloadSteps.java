@@ -44,11 +44,7 @@ public class DownloadSteps {
         logger.info("Download option text: {}", downloadText);
         Assert.assertTrue(downloadText.contains("Download"), "Download option not visible.");
     }
-    @Given("User open any video")
-    public void user_opens_any_video() {
-        downloadPage.dismissStartupPopupsIfPresent();
-        logger.info("App launched and popups dismissed.");
-    }
+   
 
     @When("User clicks on any video")
     public void user_clicks_on_any_video() {
@@ -56,13 +52,7 @@ public class DownloadSteps {
         downloadPage.clickVideo();
         logger.info("Clicked on a video.");
     }
-    @Then("User should see the Download button")
-    public void user_should_see_the_download_button() {
-        String actualText = downloadPage.getDownloadText();
-        System.out.println("Download button text retrieved: " + actualText);
-        Assert.assertTrue(actualText.equalsIgnoreCase("Download"), "Download button not displayed");
-    }
-
+    
 
     @When("clicks on Download")
     public void clicks_on_download() {
@@ -83,15 +73,15 @@ public class DownloadSteps {
     @When("User clicks on three dots in Downloaded video")
     public void user_clicks_on_three_dots_in_downloaded_video() {
         downloadPage.dismissStartupPopupsIfPresent();
-        downloadPage.clickThreeDotsForDownload();
-        downloadPage.clickDownload();
-        downloadPage.clickAllowDownloadIfPresent();
+      downloadPage.clickThreeDotsForDownload();
+      downloadPage.clickDownload();
+      downloadPage.clickAllowDownloadIfPresent();
         downloadPage.allowToAccessIfPresent();
-        downloadPage.dismissStartupPopupsIfPresent();
+      downloadPage.dismissStartupPopupsIfPresent();
         downloadPage.allowToAccessIfPresent();
-        downloadPage.clickAllowDownloadIfPresent();
-        downloadPage.clickThreeDotsForDownload();
-
+      downloadPage.clickAllowDownloadIfPresent();
+      downloadPage.clickThreeDotsForDownload();
+        
     }
 
     @Then("User should see the DeleteDownload option")
@@ -107,34 +97,14 @@ public class DownloadSteps {
         logger.info("Clicked on Delete Download button.");
     }
 
-    @Given("User opens an already Downloaded video")
-    public void user_opens_an_already_downloaded_video() {
-        downloadPage.dismissStartupPopupsIfPresent();
-        downloadPage.clickDownloadTab(); // assuming this shows downloaded videos
-        downloadPage.clickVideo();
-        logger.info("Opened an already downloaded video.");
-    }
-
-    @Then("User should see the Delete Download option")
-    public void user_should_see_the_delete_download_option() {
-        boolean visible = downloadPage.isDeleteDownloadOptionVisible();
-        Assert.assertTrue(visible, "Delete Download option is not visible");
-        logger.info("Verified presence of Delete Download option.");
-    }
-
-    @Then("User should see the Delete Download button")
-    public void user_should_see_the_delete_download_button() {
-        boolean visible = downloadPage.isDeleteDownloadOptionVisible();
-        Assert.assertTrue(visible, "Delete Download button is not visible");
-        logger.info("Verified presence of Delete Download button.");
-    }
+   
 
     @When("User clicks on Delete Download")
     public void user_clicks_on_delete_download() {
         downloadPage.clickDeleteDownload();
         logger.info("Clicked on Delete Download.");
     }
-    @And("Clicks on three dots in Downloaded tab")
+     @And("Clicks on three dots in Downloaded tab")
     public void clicks_on_three_dots_in_downloaded_tab() {
         downloadPage.clickThreeDotsForDownload();
         logger.info("Clicked on three dots in Downloaded tab.");

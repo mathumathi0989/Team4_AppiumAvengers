@@ -38,8 +38,7 @@ public class Hooks {
 
         System.out.println("Launching App");
        baseTest.setup();  
- 
-     
+
     }
 
     @After
