@@ -14,7 +14,10 @@ import org.testng.Assert;
 
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.touch.TapOptions;
+import io.appium.java_client.touch.offset.ElementOption;
 import utils.reusableFunctions;
 
 public class videoPage {
@@ -22,7 +25,7 @@ public class videoPage {
 	  reusableFunctions actions;
 	  private By video = AppiumBy.xpath("(//android.view.ViewGroup[@resource-id=\"free.rm.skytube.oss:id/top_layout\"])[2]");
 	  private By  play = AppiumBy.id("free.rm.skytube.oss:id/exo_play");
-	  private By pause = AppiumBy.id("free.rm.skytube.oss:id/exo_pause");
+	  private By pause = AppiumBy.accessibilityId("Pause");
 	 private By rewind = AppiumBy.id("free.rm.skytube.oss:id/exo_rew");
 	 private By forward = AppiumBy.id("free.rm.skytube.oss:id/exo_ffwd");
 	 private By startTime = AppiumBy.id("free.rm.skytube.oss:id/exo_position");
@@ -34,6 +37,7 @@ public class videoPage {
 	 private By resumeNo = AppiumBy.id("free.rm.skytube.oss:id/md_buttonDefaultNegative");
 	 private By resumeYes = AppiumBy.id("free.rm.skytube.oss:id/md_buttonDefaultPositive");
 	 private By viewingFullScreenPopup = AppiumBy.id("android:id/ok");
+	  private By meteredNetworkPopup = AppiumBy.id("free.rm.skytube.oss:id/md_buttonDefaultPositive");
 	  
 		 public videoPage(AppiumDriver driver) {
 		        this.driver = driver;
@@ -54,7 +58,9 @@ public class videoPage {
 	}
 	
 	public String getstartTime() {
-		//actions.waitForElementVisible(startTime);
+		actions.tapUsingPointerInput(0,0);
+	//	actions.tapUsingPointerInput((actions.getScreenSize().getWidth())/2, (actions.getScreenSize().getHeight())/2);
+	//	actions.waitForElementVisible(startTime);
 	return	driver.findElement(startTime).getText();
 		}
 			
@@ -62,8 +68,8 @@ public class videoPage {
 	return	driver.findElement(endTime).getText();
 		}
 	
-	public void clickPause() {
-		// Tap on screen using W3C Actions (replace with your actual driver)
+	public void clickPause() throws Exception {
+//		// Tap on screen using W3C Actions (replace with your actual driver)
 		PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
 		Sequence tap = new Sequence(finger, 1);
 		tap.addAction(finger.createPointerMove(Duration.ofMillis(0),
@@ -73,7 +79,12 @@ public class videoPage {
 		tap.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
 
 		driver.perform(Arrays.asList(tap));
+	//	actions.tapUsingPointerInput(0,0);
 		driver.findElement(pause).click();
+//		System.out.println("before pause its tapped");
+	//	Thread.sleep(500);
+		//actions.waitForElementVisible(pause);
+		
 	}
 	public boolean isVideoPlaying(String startTime, String endTime) {
 	    try {
@@ -133,13 +144,16 @@ public class videoPage {
 	public void clickBack() {
 		driver.findElement(goBack).click();}
 	public String getResumeAlert() {
+		actions.waitForElementVisible(resumeAlert);
 		return driver.findElement(resumeAlert).getText();
 	}
 	
 	public void clickResumeNo() {
+		actions.waitForElementVisible(resumeNo);
 		driver.findElement(resumeNo).click();
 	}
 	public void clickResumeYes() {
+		actions.waitForElementVisible(resumeYes);
 		driver.findElement(resumeYes).click();
 	}
 	
@@ -159,5 +173,11 @@ public class videoPage {
 	public void allowviewingFullScreenPopup() {
 		actions.waitForElementPresence(viewingFullScreenPopup);
 		driver.findElement(viewingFullScreenPopup).click();
+	}
+	
+	
+	public void allowmeteredNetworkPopup() {
+		actions.waitForElementPresence(meteredNetworkPopup);
+		driver.findElement(meteredNetworkPopup).click();
 	}
 }

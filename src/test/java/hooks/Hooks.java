@@ -2,8 +2,6 @@ package hooks;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.nio.file.Files;
 
 import org.openqa.selenium.OutputType;
@@ -12,8 +10,6 @@ import org.openqa.selenium.TakesScreenshot;
 import base.baseTest;
 import context.TestContext;
 import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.options.UiAutomator2Options;
 import io.cucumber.java.After;
 import io.cucumber.java.AfterAll;
 import io.cucumber.java.AfterStep;
@@ -21,7 +17,7 @@ import io.cucumber.java.Before;
 import io.cucumber.java.BeforeAll;
 import io.cucumber.java.Scenario;
 import utils.AppiumReporterUtil;
-import utils.ConfigManager;
+
 
 public class Hooks {
 	private TestContext testContext;
@@ -35,21 +31,19 @@ public static void launchEmulator() throws Exception, InterruptedException {
 	baseTest.launchAndroidEmulator();
 	
 }
+
     @Before
 	public void setup() throws Exception {
     	baseTest.startServer();
     	 baseTest.clearAppData();  // Clear app data to reset the app's state
-
     	    baseTest.terminateAndResetApp(); // Ensure the app is fully reset and terminated
-
        baseTest.setup();  
-
+       
     }
 
     @After
 	public void teardown(Scenario scenario) {
         System.out.println("Closing App");
-        // Use driver from baseTest
         AppiumDriver driver = baseTest.getDriver();
         if (driver != null) {
             try {
@@ -72,8 +66,7 @@ public static void launchEmulator() throws Exception, InterruptedException {
             AppiumReporterUtil.setSkippedTestInfo(testName, "SKIPPED", status);
     }
         }
-   //     baseTest.tearDown();  // Ensure driver is properly closed
-    //    baseTest.stopServer();
+
     }
 
     @AfterStep
@@ -82,9 +75,7 @@ public static void launchEmulator() throws Exception, InterruptedException {
     	        TakesScreenshot ts = (TakesScreenshot) baseTest.getDriver();
     	        byte[] screenshot = ts.getScreenshotAs(OutputType.BYTES);
     	        scenario.attach(screenshot, "image/png", "Failed Step Screenshot");
-
-    	     // Save screenshot as file
-    	        try {
+       try {
     	            File screenshotFile = ts.getScreenshotAs(OutputType.FILE);
     	            String fileName = "screenshots/" + scenario.getName().replaceAll(" ", "_") + "_" + System.currentTimeMillis() + ".png";
     	            File destination = new File(fileName);
@@ -107,8 +98,9 @@ public static void launchEmulator() throws Exception, InterruptedException {
         baseTest.tearDown();
         baseTest.stopServer();
         baseTest.stopAndroidEmulator(); // <-- kill emulator after all tests
-        //     baseTest.tearDown();  // Ensure driver is properly closed
-        //    baseTest.stopServer();
+       
         
     }
+    
+ 
 }

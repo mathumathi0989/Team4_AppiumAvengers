@@ -3,7 +3,7 @@
 
 Feature: Video Blocker Setup Functionality
  Background:  
-   Given    User launched the app 
+   Given User is on Trending tab 
 
   @VideoBlockFunctionality  
   Scenario: Verify the block channel option in search results
@@ -18,9 +18,9 @@ Feature: Video Blocker Setup Functionality
     When User selects either the Deny List or Allow List
     Then User should see videos listed in the Block List
   
+  #flaky test
    @VideoBlockFunctionality  
   Scenario: Validate unblocking channel from blocklist
-  
     Given User is on the Video Blocker settings page to unblock
     When User unblocks either the Deny List or Allow List
     Then User should see videos in playlist

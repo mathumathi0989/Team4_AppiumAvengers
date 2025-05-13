@@ -21,11 +21,13 @@ Feature: Download & Delete Download
     And clicks on Download
   #   Then Toast message Download should be displayed
 
+#look into it
    @DeleteDownload
   Scenario: Verify the presence of DeleteDownload option
     When User clicks on three dots in Downloaded video
     Then User should see the DeleteDownload option
 
+#look into it
   @DeleteDownload
   Scenario: Verify the presence of DeleteDownload button
     When User clicks on three dots in Downloaded video

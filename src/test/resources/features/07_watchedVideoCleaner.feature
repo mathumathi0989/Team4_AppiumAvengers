@@ -12,12 +12,12 @@ Given User is on Trending tab
     Given User already watched bookmarks
     When User click on three dots in top right page
     And Click on watched video cleaner and click on Clean
-    Then Toast message should be displayed for watched video cleaner
+    Then Toast message should be displayed for bookmarks
     
    Scenario: Verify watched video cleaner functionality for watched downloads
     Given User already watched downloads
     When User click on three dots in top right page
     And Click on watched video cleaner and click on Clean
-    Then Toast message should be displayed for watched video cleaner
+    Then Toast message should be displayed for downloads
     
     

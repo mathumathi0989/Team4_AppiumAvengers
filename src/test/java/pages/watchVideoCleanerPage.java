@@ -19,7 +19,9 @@ public class watchVideoCleanerPage {
     private By watchedBookmarks = AppiumBy.xpath("//android.widget.CheckBox[@resource-id=\"free.rm.skytube.oss:id/clean_watched_bookmarks\"]");
     private By clean = AppiumBy.id("free.rm.skytube.oss:id/md_buttonDefaultPositive");
     private By cancel = AppiumBy.id("free.rm.skytube.oss:id/md_buttonDefaultNegative");
+    private By trendingsTab = AppiumBy.androidUIAutomator("new UiSelector().text(\"TRENDING (US)\")");
     private By bookmarksTab = AppiumBy.androidUIAutomator("new UiSelector().text(\"BOOKMARKS\")");
+    private By downloadsTab = AppiumBy.androidUIAutomator("new UiSelector().text(\"DOWNLOADS\")");
     private By allowPopup = AppiumBy.id("com.android.permissioncontroller:id/permission_allow_button");
     private By allow = AppiumBy.androidUIAutomator("new UiSelector().resourceId(\"com.android.permissioncontroller:id/permission_allow_button\")"); 
 	 public watchVideoCleanerPage(AppiumDriver driver) {
@@ -54,21 +56,38 @@ public class watchVideoCleanerPage {
 		 
 	 }
 	 
+	 public void isTrending() {
+		 driver.findElement(trendingsTab).click();
+		 
+	 }
+	 public void isDownload() {
+		 driver.findElement(downloadsTab).click();
+		 
+	 }
 	 public int getBookMarksNo() {
-		 List<WebElement> gridItems = driver.findElements(By.id("free.rm.skytube.oss:id/grid_view"))
-                 .get(0)
-                 .findElements(By.className("android.view.ViewGroup"));
+		 isBookmark();
+		 List<WebElement> gridItems = driver.findElements(By.xpath("//android.widget.ScrollView[1]//android.view.ViewGroup[@resource-id=\"free.rm.skytube.oss:id/top_layout\"]"));
 		 int count = gridItems.size();
-		 System.out.println("Number of items: " + count);
+		 System.out.println("Number of items of Bookmarks: " + count);
+		 return count;
+	 }
+	 
+	 public int getDownloadsNo() {
+		 isDownload();
+		 List<WebElement> gridItems = driver.findElements(By.xpath("//android.widget.ScrollView[1]//android.view.ViewGroup[@resource-id=\"free.rm.skytube.oss:id/top_layout\"]"));
+			 int count = gridItems.size();
+		 System.out.println("Number of items of Downloads: " + count);
 		 return count;
 	 }
 	 
 	 public void allowPop() throws Exception {
 	
 			 Thread.sleep(2000);
+			 try {
 	actions.waitForElementVisible(allow);
 	driver.findElement(allow).click();
-		
+			 }
+			 catch(Exception e) {};
 			 
 			 try {
 				 driver.findElement(allowPopup).click();

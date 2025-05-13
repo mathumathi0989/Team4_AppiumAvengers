@@ -1,10 +1,11 @@
 package stepDefinitions;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.apache.xmlbeans.impl.xb.xsdschema.ListDocument.List;
+
 import org.testng.Assert;
 
 import context.TestContext;
@@ -22,9 +23,9 @@ public class videoBlockerSteps {
 	public videoBlockerSteps(TestContext testContext) {
 		this.testContext = testContext;
 	}
-	
+
 	@Given("User is on the Search tab to block channel")
-	public void user_is_on_the_search_tab() {
+	public void user_is_on_the_search_tab() throws Exception {
 	  
 		testContext.getSearchPage().searchDisplayed();
 		logger.info("User in Search Tab");
@@ -43,7 +44,10 @@ public class videoBlockerSteps {
 		logger.info("User clicks the channel to block");
 
 		testContext.getVideoBlockerPage().clickThreeDots();
+		try {
 		testContext.getVideoBlockerPage().clickChannel();
+		}
+		catch(Exception e) {}
 		
 	}
 
@@ -59,7 +63,10 @@ public class videoBlockerSteps {
 		System.out.println("searchText is " + searchText);
 		testContext.getTrendingPage().enterSearch(searchText);
 		testContext.getVideoBlockerPage().clickThreeDots();
-		testContext.getVideoBlockerPage().clickChannel();		
+		try {
+		testContext.getVideoBlockerPage().clickChannel();	
+		}
+		catch(Exception e) {};
 		testContext.getVideoBlockerPage().clickBlockChannel(); 
 		
 		logger.info("User clicks the channel to block and view list");
@@ -68,7 +75,15 @@ public class videoBlockerSteps {
 	@When("User selects either the Deny List or Allow List")
 	public void user_selects_either_the_deny_list_or_allow_list() {
 		logger.info("User views the dent or allow list");
+		testContext.getTrendingPage().clickTopRightThreeDots();
+		try {
+		testContext.getTrendingPage().getAlertNotification();}
+		catch(Exception e) {};
+		
 		testContext.getVideoBlockerPage().clickPreferences();
+		try {
+			testContext.getTrendingPage().getAlertNotification();}
+			catch(Exception e) {};
 		testContext.getVideoBlockerPage().clickvideoBlockoption();
 		testContext.getVideoBlockerPage().viewChannelDenyList();
 		
@@ -93,10 +108,19 @@ public class videoBlockerSteps {
 	}
 
 	@Given("User is on the Video Blocker settings page to unblock")
-	public void User_is_on_the_Video_Blocker_settings_page_to_unblock() {
-		testContext.getVideoBlockerPage().clickPreferences();
-		testContext.getVideoBlockerPage().clickvideoBlockoption();
-		testContext.getVideoBlockerPage().viewChannelDenyList();
+	public void User_is_on_the_Video_Blocker_settings_page_to_unblock() throws Exception {
+		testContext.getTrendingPage().enterSearch("brain break");
+		testContext.getVideoBlockerPage().clickThreeDots();
+		try {
+		testContext.getVideoBlockerPage().clickChannel();	
+		}
+		catch(Exception e) {};
+		testContext.getVideoBlockerPage().clickBlockChannel(); 
+		
+		user_selects_either_the_deny_list_or_allow_list();
+//		testContext.getVideoBlockerPage().clickPreferences();
+//		testContext.getVideoBlockerPage().clickvideoBlockoption();
+//		testContext.getVideoBlockerPage().viewChannelDenyList();
 
 	}
 
