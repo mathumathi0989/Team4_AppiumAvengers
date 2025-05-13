@@ -1,12 +1,15 @@
 package base;
 
-import org.testng.annotations.AfterMethod;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
+
+import org.testng.annotations.AfterMethod;
 
 import com.google.common.collect.ImmutableMap;
 
@@ -19,18 +22,19 @@ import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
 import utils.ConfigManager;
 
+
 public class baseTest {
 
-	  private static AppiumDriver driver;
+	 private static AppiumDriver driver;
 	  private static AppiumDriverLocalService service;
 	  
 	    public static AppiumDriverLocalService getService() {
 	        return service;
 	    }
 	    
-	    public static void startServer(final String platformName) throws Exception, Exception {
+	    public static void startServer() throws Exception, Exception {
 	    	String appiumJsPath = ConfigManager.getProperty("appium.js.path");
-	        System.out.println("Appium JS Path is: " + appiumJsPath);
+	   //     System.out.println("Appium JS Path is: " + appiumJsPath);
 	        if (appiumJsPath == null || appiumJsPath.isEmpty()) {
 	            throw new IllegalStateException("Appium JS Path is not set in environment variables.");
 	        }  
@@ -53,41 +57,45 @@ public class baseTest {
 	        service.start();
 
 	        // Log the server URL for debugging
-	        System.out.println("Appium server started at " + service.getUrl());
+	//        System.out.println("Appium server started at " + service.getUrl());
 	    
 	    }
 	    
 	    public static void stopServer() {
-           if (service != null && service.isRunning()) {
-               service.stop();
-               System.out.println("Appium server stopped.");
-           } else {
-               System.out.println("Appium server is not running.");
-           }
-        // Kill Appium Node process if still running
-           try {
-               String os = System.getProperty("os.name").toLowerCase();
-               if (os.contains("mac")) {
-                   Runtime.getRuntime().exec("killall node");
-               } else if (os.contains("win")) {
-                   Runtime.getRuntime().exec("taskkill /F /IM node.exe");
-               }
-               System.out.println("Appium (Node) process killed.");
-           } catch (IOException e) {
-               System.out.println("Failed to kill Appium process: " + e.getMessage());
-           }
-           
-       }
+          if (service != null && service.isRunning()) {
+              service.stop();
+    //          System.out.println("Appium server stopped.");
+          } else {
+    //          System.out.println("Appium server is not running.");
+          }
+       // Kill Appium Node process if still running
+          try {
+              String os = System.getProperty("os.name").toLowerCase();
+              if (os.contains("mac")) {
+                  Runtime.getRuntime().exec("killall node");
+              } else if (os.contains("win")) {
+                  Runtime.getRuntime().exec("taskkill /F /IM node.exe");
+              }
+      //        System.out.println("Appium (Node) process killed.");
+          } catch (IOException e) {
+  //            System.out.println("Failed to kill Appium process: " + e.getMessage());
+          }
+          
+      }
 	    
 	  public static void setup() throws MalformedURLException, Exception {
-		   
+		  // Check if emulator is running
+		    if (!isEmulatorRunning()) {
+		        launchAndroidEmulator();
+		    }
+		    
 	        String platform = ConfigManager.getProperty("platform").toLowerCase();
-	   //     startServer(platform);  
+	    //    startServer(platform);  
 	        
 		  if (platform.equalsIgnoreCase("Android")) {
 			//  launchAndroidEmulator(ConfigManager.getProperty("avd.name"));
 				UiAutomator2Options options = new UiAutomator2Options()
-						.setAppWaitActivity("*")						
+						.setAppWaitActivity(ConfigManager.getProperty("app.activity"))						
 						 .setUdid(ConfigManager.getProperty("device.name"))
 						 .setIgnoreHiddenApiPolicyError(true)
 						 .setAppPackage(ConfigManager.getProperty("app.package"))
@@ -127,11 +135,11 @@ public class baseTest {
 	    }
 
 	  
-	  private static void launchAndroidEmulator(String avdName) throws IOException, InterruptedException {
-
+	  public static void launchAndroidEmulator() throws IOException, InterruptedException {
+		  String avdName = ConfigManager.getProperty("avd.name");
 		  String emulatorPath = ConfigManager.getProperty("android.emulator.path");
 		    String adbPath = ConfigManager.getProperty("android.adb.path");
-	        System.out.println("Starting Android Emulator: " + avdName);
+	     //   System.out.println("Starting Android Emulator: " + avdName);
 	        // Start emulator process
 	        ProcessBuilder emulatorPb = new ProcessBuilder(emulatorPath, "-avd", avdName,
 	                "-wipe-data");
@@ -139,13 +147,13 @@ public class baseTest {
 	        emulatorPb.start();
 
 	        // Wait for emulator to be visible to adb
-	        System.out.println("Waiting for device to boot...");
+	    //    System.out.println("Waiting for device to boot...");
 	        ProcessBuilder adbWaitPb = new ProcessBuilder(adbPath, "wait-for-device");
 	        adbWaitPb.inheritIO();  // Optional: to show logs in console
 	        Process waitProcess = adbWaitPb.start();
 	        waitProcess.waitFor();  // This will block until the emulator is ready
 
-	        Thread.sleep(10000); 
+	        Thread.sleep(30000); 
 	        System.out.println("Emulator is ready.");      
 	    }
 	  
@@ -155,9 +163,9 @@ public class baseTest {
 		        String adbPath = ConfigManager.getProperty("android.adb.path");
 		        ProcessBuilder pb = new ProcessBuilder(adbPath, "emu", "kill");
 		        pb.start();
-		        System.out.println("Emulator stopped.");
+		//        System.out.println("Emulator stopped.");
 		    } catch (IOException e) {
-		        System.out.println("Failed to stop emulator: " + e.getMessage());
+		//        System.out.println("Failed to stop emulator: " + e.getMessage());
 		    }
 		}
 	  
@@ -180,12 +188,12 @@ public class baseTest {
 	    	    // Clear app data
 	    	    ProcessBuilder adbClearData = new ProcessBuilder(adbPath, "shell", "pm", "clear", appPackage);
 	    	    adbClearData.start();
-	    	    System.out.println("App data cleared for package: " + appPackage);
+	    	  //  System.out.println("App data cleared for package: " + appPackage);
 
 	    	    // Optionally, terminate the app if it is still running
 	    	    ProcessBuilder adbTerminate = new ProcessBuilder(adbPath, "shell", "am", "force-stop", appPackage);
 	    	    adbTerminate.start();
-	    	    System.out.println("App terminated for package: " + appPackage);
+	    	//    System.out.println("App terminated for package: " + appPackage);
 	    }
 	    public static void terminateAndResetApp() throws IOException {
 	        String platform = ConfigManager.getProperty("platform").toLowerCase();
@@ -197,13 +205,27 @@ public class baseTest {
 	            // Terminate the app
 	            ProcessBuilder adbTerminate = new ProcessBuilder(adbPath, "shell", "am", "force-stop", appPackage);
 	            adbTerminate.start();
-	            System.out.println("Android app terminated");
+	      //      System.out.println("Android app terminated");
 
 	            // Reset the app
 	            clearAppData();  // Clears the app data to ensure a clean state
 
-	            System.out.println("Android app data cleared and reset.");
+	      //      System.out.println("Android app data cleared and reset.");
 	        } 
+	    }
+	    
+	    public static boolean isEmulatorRunning() throws IOException {
+	        String adbPath = ConfigManager.getProperty("android.adb.path");
+	        ProcessBuilder pb = new ProcessBuilder(adbPath, "devices");
+	        Process process = pb.start();
+	        BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+	        String line;
+	        while ((line = reader.readLine()) != null) {
+	            if (line.contains("emulator") && line.contains("device")) {
+	                return true;
+	            }
+	        }
+	        return false;
 	    }
 	    
 }

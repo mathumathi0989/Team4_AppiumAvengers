@@ -66,6 +66,7 @@ public void clickPreferences() {
     driver.findElement(preferences).click();    
 }
 public String getPreferencesText() {
+	actions.waitForElementVisible(preferences);
     return actions.getTextFromElement(preferences);
 }
 
@@ -135,7 +136,7 @@ public boolean isPreferenceOptionVisible(By element) {
     public void tapOnOption(String optionText) {
 
         String xpath = "//android.widget.TextView[@text='" + optionText + "']";
-
+        actions.waitForElementVisible(By.xpath(xpath));
         driver.findElement(By.xpath(xpath)).click();
 
     }

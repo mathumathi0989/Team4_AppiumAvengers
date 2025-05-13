@@ -1,6 +1,10 @@
 package pages;
 
+import java.time.Duration;
+
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.AppiumDriver;
@@ -24,7 +28,7 @@ public class TrendingPage {
 	 private By moreOptions = AppiumBy.accessibilityId("More options");
 	 private By menu = AppiumBy.accessibilityId("SkyTube");
 	 
-	 
+
 	 public TrendingPage(AppiumDriver driver) {
 	        this.driver = driver;
 	  actions = new reusableFunctions(driver, 30);// Pass driver to LoginPage
@@ -35,6 +39,11 @@ public class TrendingPage {
 	    	   if (driver == null) {
 	    	        throw new IllegalStateException("Driver is not initialized");
 	    	    }
+	    	  try {
+	    		  driver.findElement(skyTubeNotificationAlert).click();
+	    	  }
+	    	  catch(Exception e ) {}
+	    	  
 	    	try {
 	    	driver.findElement(changesPopup).click();
 	    	System.out.println("clicked changes popup");
@@ -42,12 +51,13 @@ public class TrendingPage {
 	    	catch(Exception e){
 	    		
 	    	}
-	    	String getTrendingTitle = driver.findElement(skyTubePageTitle).getText();
-	    	System.out.println("Title of the trending page is " + getTrendingTitle);
+	    //	String getTrendingTitle = driver.findElement(skyTubePageTitle).getText();
+	    //	System.out.println("Title of the trending page is " + getTrendingTitle);
 	    	
 	    }
 	    
 	    public void enterSearch(String searchText) {
+	    	actions.waitForElementVisible(search);
 	    	driver.findElement(search).click();
 	    	driver.findElement(enterSearch).sendKeys(searchText);
 	    	  // Cast WebDriver to AndroidDriver to access pressKey
@@ -56,6 +66,7 @@ public class TrendingPage {
 	    }
 	    
 	    public void clickThreeDots() {
+	    	actions.waitForElementPresence(threeDots);
 	    	driver.findElement(threeDots).click();
 	    }
 	    
@@ -77,6 +88,7 @@ public class TrendingPage {
 	    }
 	
 	    public void clickTopRightThreeDots() {
+	    	actions.waitForElementVisible(moreOptions);
 	    	driver.findElement(moreOptions).click();    }
 	    
 	    
