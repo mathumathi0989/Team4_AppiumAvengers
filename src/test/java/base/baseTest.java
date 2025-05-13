@@ -84,10 +84,7 @@ public class baseTest {
       }
 	    
 	  public static void setup() throws MalformedURLException, Exception {
-		  // Check if emulator is running
-		    if (!isEmulatorRunning()) {
-		        launchAndroidEmulator();
-		    }
+		  
 		    
 	        String platform = ConfigManager.getProperty("platform").toLowerCase();
 	    //    startServer(platform);  
@@ -105,17 +102,21 @@ public class baseTest {
 				  .setFullReset(false);   // <-- Prevents uninstalling the app
 
 				 driver = new AndroidDriver(new URL(ConfigManager.getProperty("appium.server.url")), options);			
-				 driver.executeScript("plugin: setReporterPluginProperties", ImmutableMap.of(
-			                "enabled", true,
-			                "projectName", "Numpy Ninja Project",
-			                "reportTitle", "Appium Test Execution Report",
-			                "teamName", "Appium Avengers Team"
-			        ));
-				driver.executeScript("plugin: setWaitPluginProperties", ImmutableMap.of(
-					                "timeout", 10000,
-					                "intervalBetweenAttempts", 500
-					        )
-								 );					   
+				 try {
+					    driver.executeScript("plugin: setReporterPluginProperties", Map.of(
+					        "enabled", true,
+					        "projectName", "Numpy Ninja Project",
+					        "reportTitle", "Appium Test Execution Report",
+					        "teamName", "Appium Avengers Team"
+					    ));
+
+					    driver.executeScript("plugin: setWaitPluginProperties", Map.of(
+					        "timeout", 25000,
+					        "intervalBetweenAttempts", 500
+					    ));
+					} catch (Exception e) {
+					    System.out.println("Failed to set plugin properties: " + e.getMessage());
+					}			   
 		  }
 		  else if (platform.equalsIgnoreCase("iOS")) {
 			  XCUITestOptions options = new XCUITestOptions()

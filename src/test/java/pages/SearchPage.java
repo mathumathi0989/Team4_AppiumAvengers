@@ -43,7 +43,7 @@ public class SearchPage {
 
 	    public boolean searchDisplayed() throws Exception
 	    {
-	    	Thread.sleep(1000);
+	    	Thread.sleep(2000);
 	    	return driver.findElement(search).isDisplayed();
 	    }
 	    
