@@ -47,7 +47,8 @@ public class TrendingPage {
 	    	try {
 	    	driver.findElement(changesPopup).click();
 	    	System.out.println("clicked changes popup");
-	    	}
+			Thread.sleep(2000);
+		} 
 	    	catch(Exception e){
 	    		
 	    	}
