@@ -27,7 +27,7 @@ Feature: preferences functionality
       | Others               |
       | About                |
 
-
+#flaky test
       Scenario: Verify the Video Player option
         When User click on three dots in top right page1
         And User click on preferences option
@@ -35,7 +35,7 @@ Feature: preferences functionality
         Then A dialog with title "Video Player" should appear
         And The radio option "Default" should be selected
 
-
+#flaky test
         Scenario: Verify and change the Screen Orientation option
   When User click on three dots in top right page1
   And User click on preferences option
