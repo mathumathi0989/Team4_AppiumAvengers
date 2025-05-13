@@ -26,7 +26,7 @@ public class Hooks {
     }
     
 
-@BeforeAll
+ @BeforeAll
 public static void launchEmulator() throws Exception, InterruptedException {
 	baseTest.launchAndroidEmulator();
 	
