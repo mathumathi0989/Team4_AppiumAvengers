@@ -107,6 +107,13 @@ public class TestContext {
         }
         return this.downloadPage;
     }
+
+    public SearchPage getVideoBlockerPage() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getVideoBlockerPage'");
+    }
+
+    
     
 	    
 }

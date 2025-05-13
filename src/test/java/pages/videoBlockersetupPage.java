@@ -2,7 +2,7 @@ package pages;
 
 import java.util.ArrayList;
 
-import org.apache.xmlbeans.impl.xb.xsdschema.ListDocument.List;
+import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
