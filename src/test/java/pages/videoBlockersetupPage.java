@@ -1,8 +1,8 @@
 package pages;
 
 import java.util.ArrayList;
-
 import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -28,8 +28,10 @@ public class videoBlockersetupPage {
 			.xpath("//android.widget.TextView[@resource-id=\"free.rm.skytube.oss:id/title\" and @text=\"Channel...\"]");
 	// ByAndroidUIAutomator("new
 	// UiSelector().resourceId(\"free.rm.skytube.oss:id/title\").textContains(\"Channel\")")
-	private By blockChannel = AppiumBy.xpath(
-			"//android.widget.TextView[@resource-id=\"free.rm.skytube.oss:id/title\" and @text=\"Block Channel\"]");
+	//private By blockChannel = AppiumBy.xpath(
+		//	"//android.widget.TextView[@resource-id=\"free.rm.skytube.oss:id/title\" and @text=\"Block Channel\"]");
+			private By blockChannel = AppiumBy.androidUIAutomator("new UiSelector().text(\"Block Channel\")");
+	
 	private By preferences = AppiumBy.xpath(
 			"//android.widget.TextView[@resource-id=\"free.rm.skytube.oss:id/title\" and @text=\"Preferences\"]");
 	private By videoBlockerText = AppiumBy
@@ -39,9 +41,9 @@ public class videoBlockersetupPage {
 			.xpath("//android.widget.TextView[@resource-id=\"android:id/title\" and @text=\"Channel Deny List\"]");
 	private By denyListChannels = AppiumBy.accessibilityId("free.rm.skytube.oss:id/channel_name");
 
-	private By selectAlltoUnblock = AppiumBy.accessibilityId("free.rm.skytube.oss:id/select_all_button");
-
-	private By Unblock = AppiumBy.accessibilityId("free.rm.skytube.oss:id/md_buttonDefaultPositive");
+	private By selectAlltoUnblock = AppiumBy.id("free.rm.skytube.oss:id/select_all_button");
+	
+	private By Unblock = AppiumBy.id("free.rm.skytube.oss:id/md_buttonDefaultPositive");
 
 	private By back = AppiumBy.accessibilityId("Navigate up");
 
@@ -51,10 +53,12 @@ public class videoBlockersetupPage {
 	}
 
 	public void clickThreeDots() {
+		actions.waitForElementVisible(threeDots);
 		driver.findElement(threeDots).click();
 	}
 
 	public void clickChannel() {
+		//actions.waitForElementVisible(channel);
 		driver.findElement(channel).click();
 	}
 
@@ -64,7 +68,6 @@ public class videoBlockersetupPage {
 
 	public void clickBlockChannel() {
 		driver.findElement(blockChannel).click();
-		;
 	}
 
 	public void clickPreferences() {

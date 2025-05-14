@@ -29,7 +29,7 @@ public class searchChannelSteps {
 	}
 
 	@Given("User is on the Home screen")
-	public void user_is_on_the_home_screen() {
+	public void user_is_on_the_home_screen() throws Exception {
 
 		testContext.getSearchPage().searchDisplayed();
 		logger.info("User in Search Tab");
@@ -51,7 +51,7 @@ public class searchChannelSteps {
 	}
 
 	@Given("User has a valid channel search results returned")
-	public void user_has_a_valid_channel_search_results_returned() throws IOException {
+	public void user_has_a_valid_channel_search_results_returned() throws Exception {
 
 		testContext.getSearchPage().searchDisplayed();
 		logger.info("User in Search Tab");
@@ -68,7 +68,7 @@ public class searchChannelSteps {
 	}
 
 	@Then("User should be navigated to the channel page")
-	public void user_should_be_navigated_to_the_channel_page() {
+	public void user_should_be_navigated_to_the_channel_page() throws Exception {
 
 		testContext.getSearchPage().getChannelTitle();
 		logger.info("Title of search Channel");
@@ -76,7 +76,7 @@ public class searchChannelSteps {
 	}
 
 	@Given("User is on the search tab")
-	public void user_is_on_the_search_tab() {
+	public void user_is_on_the_search_tab() throws Exception {
 
 		testContext.getSearchPage().searchDisplayed();
 		logger.info("User in Search Tab");
@@ -188,7 +188,7 @@ public class searchChannelSteps {
 
 	@Then("Either all results should be shown or a message “Please enter search query”")
 	public void either_all_results_should_be_shown_or_message_enter_search_query() {
-
+		
 		boolean isResultDisplayed = testContext.getSearchPage().isSearchResultDisplayed();
 		boolean isValidationMessageDisplayed = testContext.getSearchPage()
 				.isValidationMessageDisplayed("Please enter search query");

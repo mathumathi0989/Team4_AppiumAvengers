@@ -8,6 +8,7 @@ import pages.PreferencesPage;
 import pages.SearchPage;
 import pages.SubscribePage;
 import pages.TrendingPage;
+import pages.videoBlockersetupPage;
 import pages.videoPage;
 import pages.watchVideoCleanerPage;
 import utils.ExcelReader;
@@ -25,7 +26,7 @@ public class TestContext {
     private BookmarkPage bookmarkPage;
     private PreferencesPage preferencesPage;
     private DownloadPage downloadPage;
-
+    private videoBlockersetupPage videoBlockerPage;
     
     public TestContext() throws Exception {
         this.excelReader = new ExcelReader();  
@@ -108,12 +109,14 @@ public class TestContext {
         return this.downloadPage;
     }
 
-    public SearchPage getVideoBlockerPage() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getVideoBlockerPage'");
+   
+    
+    
+    public videoBlockersetupPage getVideoBlockerPage() {
+    	 if (this.videoBlockerPage == null) {
+             this.videoBlockerPage = new videoBlockersetupPage(getDriver()); 
+         }
+         return this.videoBlockerPage;
     }
-
-    
-    
 	    
 }
