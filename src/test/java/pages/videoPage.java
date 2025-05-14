@@ -128,9 +128,10 @@ public class videoPage {
 		   AndroidDriver androidDriver = (AndroidDriver) driver;  // cast AppiumDriver to AndroidDriver
 		    if (phoneMode.equalsIgnoreCase("landscape")) {
 		        androidDriver.rotate(ScreenOrientation.LANDSCAPE);
-		        Thread.sleep(1000);
+		        Thread.sleep(2000);
 		    } else {
 		        androidDriver.rotate(ScreenOrientation.PORTRAIT);
+		        Thread.sleep(2000);
 		    }
 	}
 	
