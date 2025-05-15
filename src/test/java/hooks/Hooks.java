@@ -21,6 +21,8 @@ import utils.AppiumReporterUtil;
 
 public class Hooks {
 	private TestContext testContext;
+    private baseTest base;
+
     public Hooks(TestContext context) {
         this.testContext = context;
     }
@@ -34,20 +36,21 @@ public static void launchEmulator() throws Exception, InterruptedException {
 
     @Before
 	public void setup() throws Exception {
-    	baseTest.startServer();
-    	 baseTest.clearAppData();  // Clear app data to reset the app's state
-    	    baseTest.terminateAndResetApp(); // Ensure the app is fully reset and terminated
-       baseTest.setup();  
+        base=new baseTest();
+    	base.startServer();
+    	 base.clearAppData();  // Clear app data to reset the app's state
+    	    base.terminateAndResetApp(); // Ensure the app is fully reset and terminated
+       base.setup();
        
     }
 
     @After
 	public void teardown(Scenario scenario) {
         System.out.println("Closing App");
-        AppiumDriver driver = baseTest.getDriver();
+        AppiumDriver driver = base.getDriver();
         if (driver != null) {
             try {
-                baseTest.terminateAndResetApp();  // Ensure clean state
+                base.terminateAndResetApp();  // Ensure clean state
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -71,8 +74,8 @@ public static void launchEmulator() throws Exception, InterruptedException {
 
     @AfterStep
     public void takeScreenshotOnFailure(Scenario scenario) {
-    	 if (scenario.isFailed() && baseTest.getDriver() != null) {
-    	        TakesScreenshot ts = (TakesScreenshot) baseTest.getDriver();
+    	 if (scenario.isFailed() && base.getDriver() != null) {
+    	        TakesScreenshot ts = (TakesScreenshot) base.getDriver();
     	        byte[] screenshot = ts.getScreenshotAs(OutputType.BYTES);
     	        scenario.attach(screenshot, "image/png", "Failed Step Screenshot");
        try {
@@ -95,8 +98,8 @@ public static void launchEmulator() throws Exception, InterruptedException {
         String report = AppiumReporterUtil.getReport();
         AppiumReporterUtil.deleteReportData();
         AppiumReporterUtil.createReportFile(report, "AppiumAvengersReport");
-        baseTest.tearDown();
-        baseTest.stopServer();
+        //baseTest.tearDown();
+        //baseTest.stopServer();
         baseTest.stopAndroidEmulator(); // <-- kill emulator after all tests
        
         

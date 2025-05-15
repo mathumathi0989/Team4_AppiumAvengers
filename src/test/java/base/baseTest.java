@@ -25,14 +25,14 @@ import utils.ConfigManager;
 
 public class baseTest {
 
-	 private static AppiumDriver driver;
-	  private static AppiumDriverLocalService service;
+	 private AppiumDriver driver;
+	  private  AppiumDriverLocalService service;
 	  
-	    public static AppiumDriverLocalService getService() {
+	    public  AppiumDriverLocalService getService() {
 	        return service;
 	    }
 	    
-	    public static void startServer() throws Exception, Exception {
+	    public void startServer() throws Exception, Exception {
 	    	String appiumJsPath = ConfigManager.getProperty("appium.js.path");
 	   //     System.out.println("Appium JS Path is: " + appiumJsPath);
 	        if (appiumJsPath == null || appiumJsPath.isEmpty()) {
@@ -61,7 +61,7 @@ public class baseTest {
 	    
 	    }
 	    
-	    public static void stopServer() {
+	    public void stopServer() {
           if (service != null && service.isRunning()) {
               service.stop();
     //          System.out.println("Appium server stopped.");
@@ -83,14 +83,14 @@ public class baseTest {
           
       }
 	    
-	  public static void setup() throws MalformedURLException, Exception {
+	  public void setup() throws MalformedURLException, Exception {
 		  
 		    
 	        String platform = ConfigManager.getProperty("platform").toLowerCase();
 	    //    startServer(platform);  
 	        
 		  if (platform.equalsIgnoreCase("Android")) {
-			//  launchAndroidEmulator(ConfigManager.getProperty("avd.name"));
+			// launchAndroidEmulator(ConfigManager.getProperty("avd.name"));
 				UiAutomator2Options options = new UiAutomator2Options()
 						.setAppWaitActivity(ConfigManager.getProperty("app.activity"))						
 						 .setUdid(ConfigManager.getProperty("device.name"))
@@ -171,18 +171,18 @@ public class baseTest {
 		}
 	  
 	    @AfterMethod
-		public static void tearDown() {
+		public  void tearDown() {
 	        if (driver != null) {
 	            driver.quit();
 	            driver = null;
 	        }
 	    }
 
-	    public static AppiumDriver getDriver() {
+	    public AppiumDriver getDriver() {
 	        return driver;
 	    }
 	    
-	    public static void clearAppData() throws IOException {
+	    public void clearAppData() throws IOException {
 	    	  String adbPath = ConfigManager.getProperty("android.adb.path");
 	    	    String appPackage = ConfigManager.getProperty("app.package");
 
@@ -196,7 +196,7 @@ public class baseTest {
 	    	    adbTerminate.start();
 	    	//    System.out.println("App terminated for package: " + appPackage);
 	    }
-	    public static void terminateAndResetApp() throws IOException {
+	    public void terminateAndResetApp() throws IOException {
 	        String platform = ConfigManager.getProperty("platform").toLowerCase();
 
 	        if (platform.equals("android")) {
