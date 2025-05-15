@@ -47,7 +47,7 @@ public class baseTest {
 	        AppiumServiceBuilder builder = new AppiumServiceBuilder()
 	        		  .withAppiumJS(new File(appiumJsPath))
 	                  .usingDriverExecutable(new File(nodeExecutablePath))
-	                  .withArgument(() -> "--use-plugins=appium-reporter-plugin,element-wait")
+	                  //.withArgument(() -> "--use-plugins=appium-reporter-plugin,element-wait")
 	                  .usingPort(4723)
 	                  .withEnvironment(environment);
 

@@ -37,7 +37,7 @@ public static void launchEmulator() throws Exception, InterruptedException {
     @Before
 	public void setup() throws Exception {
         base=new baseTest();
-    	base.startServer();
+    	//base.startServer();
     	 base.clearAppData();  // Clear app data to reset the app's state
     	    base.terminateAndResetApp(); // Ensure the app is fully reset and terminated
        base.setup();
