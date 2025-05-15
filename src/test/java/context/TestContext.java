@@ -30,7 +30,8 @@ public class TestContext {
     private videoBlockersetupPage videoBlockerPage;
     
     public TestContext() throws Exception {
-        this.excelReader = new ExcelReader();  
+        this.excelReader = new ExcelReader();
+        this.base = new baseTest();
     }
 
     public SubscribePage getSubscribePage() {
