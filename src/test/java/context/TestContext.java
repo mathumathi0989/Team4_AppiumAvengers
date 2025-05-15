@@ -16,7 +16,8 @@ import utils.ExcelReader;
 
 public class TestContext {
 
-	private AppiumDriver driver;
+    private baseTest base;
+    private AppiumDriver driver;
     protected SubscribePage subscribePage;
     protected TrendingPage trendingPage;
     private ExcelReader excelReader;
@@ -74,7 +75,7 @@ public class TestContext {
     
     public AppiumDriver getDriver() {
         if (this.driver == null) {
-            this.driver = baseTest.getDriver();
+            this.driver = base.getDriver();
             if (this.driver == null) {
                 throw new IllegalStateException("Driver is not initialized in baseTest");
             }
