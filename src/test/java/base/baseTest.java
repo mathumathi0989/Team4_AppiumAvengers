@@ -102,21 +102,28 @@ public class baseTest {
 				  .setFullReset(false);   // <-- Prevents uninstalling the app
 
 				 driver = new AndroidDriver(new URL(ConfigManager.getProperty("appium.server.url")), options);			
-				 try {
-					    driver.executeScript("plugin: setReporterPluginProperties", Map.of(
-					        "enabled", true,
-					        "projectName", "Numpy Ninja Project",
-					        "reportTitle", "Appium Test Execution Report",
-					        "teamName", "Appium Avengers Team"
-					    ));
+//				 try {
+//					 driver.executeScript("plugin: setReporterPluginProperties", Map.of(
+//							 "enabled", true,
+//							 "projectName", "Numpy Ninja Project",
+//							 "reportTitle", "Appium Test Execution Report",
+//							 "teamName", "Appium Avengers Team"
+//					 ));
+//
+//					 driver.executeScript("plugin: setWaitPluginProperties", Map.of(
+//							 "timeout", 25000,
+//							 "intervalBetweenAttempts", 500
+//					 ));
 
-					    driver.executeScript("plugin: setWaitPluginProperties", Map.of(
-					        "timeout", 25000,
-					        "intervalBetweenAttempts", 500
-					    ));
-					} catch (Exception e) {
-					    System.out.println("Failed to set plugin properties: " + e.getMessage());
-					}			   
+
+//
+//					    driver.executeScript("plugin: setWaitPluginProperties", Map.of(
+//					        "timeout", 25000,
+//					        "intervalBetweenAttempts", 500
+//					    ));
+//					} catch (Exception e) {
+//					    System.out.println("Failed to set plugin properties: " + e.getMessage());
+//					}
 		  }
 		  else if (platform.equalsIgnoreCase("iOS")) {
 			  XCUITestOptions options = new XCUITestOptions()
