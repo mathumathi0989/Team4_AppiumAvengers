@@ -86,53 +86,48 @@ public class baseTest {
 	  public static void setup() throws MalformedURLException, Exception {
 		  
 		    
-	        String platform = ConfigManager.getProperty("platform").toLowerCase();
-	    //    startServer(platform);  
-	        
-		  if (platform.equalsIgnoreCase("Android")) {
-			//  launchAndroidEmulator(ConfigManager.getProperty("avd.name"));
-				UiAutomator2Options options = new UiAutomator2Options()
-						.setAppWaitActivity(ConfigManager.getProperty("app.activity"))						
-						 .setUdid(ConfigManager.getProperty("device.name"))
-						 .setIgnoreHiddenApiPolicyError(true)
-						 .setAppPackage(ConfigManager.getProperty("app.package"))
-						    .setAppActivity(ConfigManager.getProperty("app.activity"))
-					    .setApp(ConfigManager.getAppPath())
-				  .setNoReset(true)  // <-- Keeps app and data between sessions
-				  .setFullReset(false);   // <-- Prevents uninstalling the app
-
-				 driver = new AndroidDriver(new URL(ConfigManager.getProperty("appium.server.url")), options);			
-				 try {
-					    driver.executeScript("plugin: setReporterPluginProperties", Map.of(
-					        "enabled", true,
-					        "projectName", "Numpy Ninja Project",
-					        "reportTitle", "Appium Test Execution Report",
-					        "teamName", "Appium Avengers Team"
-					    ));
-
-					    driver.executeScript("plugin: setWaitPluginProperties", Map.of(
-					        "timeout", 25000,
-					        "intervalBetweenAttempts", 500
-					    ));
-					} catch (Exception e) {
-					    System.out.println("Failed to set plugin properties: " + e.getMessage());
-					}			   
-		  }
-		  else if (platform.equalsIgnoreCase("iOS")) {
-			  XCUITestOptions options = new XCUITestOptions()
-					  .setUdid(ConfigManager.getProperty("udid"))
-					  .setApp(ConfigManager.getProperty("app.ios.path"))
-					  .setNoReset(false)
-					  .setAutoAcceptAlerts(true)
-					  .setShowXcodeLog(true); 
-			  driver = new IOSDriver(new URL(ConfigManager.getProperty("appium.server.url")), options);
-			 
-			  
-			 	  }
-		    if (driver == null) {
-		        throw new IllegalStateException("Driver initialization failed in baseTest");
-		    }
-		  
+		  String platform = ConfigManager.getProperty("platform").toLowerCase();
+		    //    startServer(platform);
+		       
+			  if (platform.equalsIgnoreCase("Android")) {
+				//  launchAndroidEmulator(ConfigManager.getProperty("avd.name"));
+					UiAutomator2Options options = new UiAutomator2Options()
+							.setAppWaitActivity(ConfigManager.getProperty("app.activity"))						
+							 .setUdid(ConfigManager.getProperty("device.name"))
+							 .setIgnoreHiddenApiPolicyError(true)
+							 .setAppPackage(ConfigManager.getProperty("app.package"))
+							    .setAppActivity(ConfigManager.getProperty("app.activity"))
+						    .setApp(ConfigManager.getAppPath())
+					  .setNoReset(true)  // <-- Keeps app and data between sessions
+					  .setFullReset(false);   // <-- Prevents uninstalling the app
+					 driver = new AndroidDriver(new URL(ConfigManager.getProperty("appium.server.url")), options);			
+					  
+			  }
+			  else if (platform.equalsIgnoreCase("iOS")) {
+				  XCUITestOptions options = new XCUITestOptions()
+						  .setUdid(ConfigManager.getProperty("udid"))
+						  .setApp(ConfigManager.getProperty("app.ios.path"))
+						  .setNoReset(false)
+						  .setAutoAcceptAlerts(true)
+						  .setShowXcodeLog(true);
+				  driver = new IOSDriver(new URL(ConfigManager.getProperty("appium.server.url")), options);
+				
+				 
+				 	  }
+			
+			        driver.executeScript("plugin: setWaitPluginProperties", ImmutableMap.of(
+			                "timeout", 25000,
+			                "intervalBetweenAttempts", 500
+			        ));
+				 
+			        driver.executeScript("plugin: setReporterPluginProperties", ImmutableMap.of(
+			                "enabled", true,
+			                "projectName", "Numpy Ninja Project",
+			                "reportTitle", "Appium Test Execution Report"
+			        ));
+			    if (driver == null) {
+			        throw new IllegalStateException("Driver initialization failed in baseTest");
+			    }
 	    }
 
 	  
