@@ -29,12 +29,12 @@ public class Hooks {
 @BeforeAll
 public static void launchEmulator() throws Exception, InterruptedException {
 	baseTest.launchAndroidEmulator();
-	
+	baseTest.startServer();
+
 }
 
     @Before
 	public void setup() throws Exception {
-    	baseTest.startServer();
     	 baseTest.clearAppData();  // Clear app data to reset the app's state
     	    baseTest.terminateAndResetApp(); // Ensure the app is fully reset and terminated
        baseTest.setup();  
@@ -45,12 +45,12 @@ public static void launchEmulator() throws Exception, InterruptedException {
 	public void teardown(Scenario scenario) {
         System.out.println("Closing App");
         AppiumDriver driver = baseTest.getDriver();
-        if (driver != null) {
-            try {
-                baseTest.terminateAndResetApp();  // Ensure clean state
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+//        if (driver != null) {
+//            try {
+//                baseTest.terminateAndResetApp();  // Ensure clean state
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
         String sessionId = AppiumReporterUtil.getSessionId(driver);
         String testName = scenario.getName();
         String status = scenario.getStatus().name(); 
@@ -65,7 +65,8 @@ public static void launchEmulator() throws Exception, InterruptedException {
         default:
             AppiumReporterUtil.setSkippedTestInfo(testName, "SKIPPED", status);
     }
-        }
+   //     }
+        baseTest.tearDown();
 
     }
 
