@@ -13,7 +13,7 @@ import kong.unirest.Unirest;
 
 public class AppiumReporterUtil {
 
-	  private static final String BASE_URL = "http://localhost:4723";
+	 private static final String BASE_URL = "http://localhost:4723";
 	    private static final String HTML_REPORT_DIR = System.getProperty("user.dir");
 
 	    private static final Set<String> reportedTests = new HashSet<>(); // prevent duplicate test reports
@@ -102,6 +102,5 @@ public class AppiumReporterUtil {
 	            return false; // default to false if something goes wrong
 	        }
 	    }
-	    
 	    
 }

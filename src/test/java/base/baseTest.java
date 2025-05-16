@@ -20,6 +20,7 @@ import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.ios.options.XCUITestOptions;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
+import utils.AppiumReporterUtil;
 import utils.ConfigManager;
 
 
@@ -102,21 +103,7 @@ public class baseTest {
 				  .setFullReset(false);   // <-- Prevents uninstalling the app
 
 				 driver = new AndroidDriver(new URL(ConfigManager.getProperty("appium.server.url")), options);			
-				 try {
-					    driver.executeScript("plugin: setReporterPluginProperties", Map.of(
-					        "enabled", true,
-					        "projectName", "Numpy Ninja Project",
-					        "reportTitle", "Appium Test Execution Report",
-					        "teamName", "Appium Avengers Team"
-					    ));
-
-					    driver.executeScript("plugin: setWaitPluginProperties", Map.of(
-					        "timeout", 25000,
-					        "intervalBetweenAttempts", 500
-					    ));
-					} catch (Exception e) {
-					    System.out.println("Failed to set plugin properties: " + e.getMessage());
-					}			   
+				   
 		  }
 		  else if (platform.equalsIgnoreCase("iOS")) {
 			  XCUITestOptions options = new XCUITestOptions()
@@ -129,6 +116,17 @@ public class baseTest {
 			 
 			  
 			 	  }
+		 
+		        driver.executeScript("plugin: setWaitPluginProperties", ImmutableMap.of(
+		                "timeout", 25000,
+		                "intervalBetweenAttempts", 500
+		        ));
+			  
+		        driver.executeScript("plugin: setReporterPluginProperties", ImmutableMap.of(
+		                "enabled", true,
+		                "projectName", "Numpy Ninja Project",
+		                "reportTitle", "Appium Test Execution Report"
+		        ));
 		    if (driver == null) {
 		        throw new IllegalStateException("Driver initialization failed in baseTest");
 		    }
