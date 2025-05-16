@@ -30,11 +30,11 @@ public class Hooks {
 public static void launchEmulator() throws Exception, InterruptedException {
 	baseTest.launchAndroidEmulator();
 	baseTest.startServer();
+
 }
 
     @Before
 	public void setup() throws Exception {
-    	
     	 baseTest.clearAppData();  // Clear app data to reset the app's state
     	    baseTest.terminateAndResetApp(); // Ensure the app is fully reset and terminated
        baseTest.setup();  
@@ -65,6 +65,7 @@ public static void launchEmulator() throws Exception, InterruptedException {
         default:
             AppiumReporterUtil.setSkippedTestInfo(testName, "SKIPPED", status);
     }
+
         
         baseTest.tearDown(); 
 

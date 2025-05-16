@@ -86,7 +86,6 @@ public class baseTest {
 	    
 	  public static void setup() throws MalformedURLException, Exception {
 		  
-		    
 	        String platform = ConfigManager.getProperty("platform").toLowerCase();
 	    //    startServer(platform);  
 	        
